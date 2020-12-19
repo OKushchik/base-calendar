@@ -1,0 +1,18 @@
+.month-switcher {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+.month-switcher__month {
+    font-size: 21px;
+    width: 180px;
+    text-align: center;
+}
+.month-switcher__btn {
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+.month-switcher__btn:hover{
+    cursor: pointer;
+}
