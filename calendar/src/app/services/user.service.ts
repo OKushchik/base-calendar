@@ -8,7 +8,7 @@ import { map } from "rxjs/operators";
 })
 export class UserService {
 
-  observable:Observable<User[]>
+  // observable:Observable<User[]>
   
   constructor() {
     // this.observable = new Observable<User[]>();
@@ -43,10 +43,11 @@ export class UserService {
   ]
 
   getUsers() {
-    return new Observable(subscriber => {
+    return new Observable<User[]>(subscriber => {
       subscriber.next(this.users);
     })
   }
+  
 
   // getUserById(): Observable<User>
 }
