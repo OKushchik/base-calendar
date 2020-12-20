@@ -1,9 +1,9 @@
-<!--<div class="month-switcher">-->
-<!--  <button class="month-switcher__btn" (click)="switchMonth(-1)">-->
-<!--    prev-->
-<!--  </button>-->
-<!--  <span class="month-switcher__month">current</span>-->
-<!--  <button class="month-switcher__btn" (click)="switchMonth(1)">-->
-<!--    next-->
-<!--  </button>-->
-<!--</div>-->
+<div class="month-switcher">
+    <button class="month-switcher__btn" (click)="switchMonth(-1)">
+      <i class="icon icon-Arrow-2"></i>
+   </button>
+    <span class="month-switcher__month">{{date | date:'MMMM yyyy'}}</span>
+    <button class="month-switcher__btn" (click)="switchMonth(1)">
+       <i class="icon icon-Arrow-3"></i>
+    </button>
+   </div>

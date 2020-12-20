@@ -1,4 +1,5 @@
 export interface Day {
-  date: Date;
-  isDayOff: boolean;
+  num: Number;
+  week: String;
+  isWeekend: boolean;
 }

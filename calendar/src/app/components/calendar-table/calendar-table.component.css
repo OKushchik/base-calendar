@@ -1,0 +1,12 @@
+.weekendDay {
+    background-color: gray;
+}
+.day, .sum {
+    border: 1px solid black;
+    text-align: center;
+    width: 30px;
+    height: 30px;
+}
+table {
+    border-collapse: collapse;
+}
