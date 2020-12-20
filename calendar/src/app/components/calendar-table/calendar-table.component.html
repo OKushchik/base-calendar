@@ -37,3 +37,19 @@
 <!--    </tbody>-->
 <!--  </table>-->
 <!--</section>-->
+
+
+<section class="calendar">
+    <table class="calendar__table">
+        <thead>
+            <tr>
+                <td class="btnAdd"><button>add vacation</button></td>
+                <td *ngFor = 'let day of arrOfDays' [class]="day.isWeekend? 'weekendDay day':'workDay day'">
+                    <span>{{day.num}}</span>
+                    <br>
+                    <span>{{day.week}}</span>
+                </td>
+            </tr>
+         </thead>
+    </table>    
+</section>
