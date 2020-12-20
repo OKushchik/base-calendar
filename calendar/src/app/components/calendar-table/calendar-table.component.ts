@@ -19,26 +19,33 @@ export class CalendarTableComponent implements OnInit {
   daysInMonth: Number;
   arrOfDays: Array<Day>;
 
+  vacation:any
+
   users: any
 
   constructor(private _dateService: DateService, private _userService: UserService) {
     this.date = new Date
+    this.vacation = {
+      start:"20.02.2020",
+      end:"22.02.2020",
+    }
    }
 
   ngOnInit() {
-    
+
     this.getDaysInMonth ();
     this.getArrOfDays ();
-console.log(this.arrOfDays)
+    this.getVacation();
+   console.log(this.arrOfDays)
 
 
     this._dateService.switchMonth().subscribe(
       (val) => {
         this.date = val
         this.getDaysInMonth ();
-        this.getArrOfDays ()
-
-        
+        this.getArrOfDays ();
+        this.getVacation();
+       
       })
 
       this._userService.getUsers().subscribe(
@@ -103,7 +110,23 @@ console.log(this.arrOfDays)
     }
 
   }
+  getVacation() {
+    let currentMonth = {
+      start: new Date(this.date.getFullYear(), this.date.getMonth(), 1).getTime(),
+      end: new Date(this.date.getFullYear(), this.date.getMonth()+1, 1).getTime()-1,
 
+    }
+    let currentVacation = {
+      start: this.convertedDate(this.vacation.start).getTime(),
+      end: this.convertedDate(this.vacation.end).getTime()-1
+    }
+    console.log(currentMonth)
+    console.log(currentVacation)
+  }
+
+  convertedDate(day){
+    return new Date(day.split(".").reverse().join("-"))
+  }
   // get teamsEntity(): Team[] {}
 
   // monthDaysEntity(): Day[] {}
