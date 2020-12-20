@@ -1,15 +1,11 @@
 .weekendDay {
     background-color: gray;
 }
-.workDay {
-    background-color: rgb(255, 255, 255);
-}
-.day {
+.day, .sum {
     border: 1px solid black;
     text-align: center;
     width: 30px;
     height: 30px;
-    border-collapse: collapse;
 }
 table {
     border-collapse: collapse;

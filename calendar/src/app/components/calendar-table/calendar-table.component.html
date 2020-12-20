@@ -12,6 +12,7 @@
 <!--        </td>-->
 <!--      </tr>-->
 <!--    </thead>-->
+
 <!--    <tbody check that teamEntity is exist>-->
 <!--    <tr get team of teamEntities>-->
 <!--      <div class="calendar__row-inner">-->
@@ -44,12 +45,16 @@
         <thead>
             <tr>
                 <td class="btnAdd"><button>add vacation</button></td>
-                <td *ngFor = 'let day of arrOfDays' [class]="day.isWeekend? 'weekendDay day':'workDay day'">
+                <td *ngFor = 'let day of arrOfDays' [class]="day.isWeekend? 'weekendDay day':'day'">
                     <span>{{day.num}}</span>
                     <br>
                     <span>{{day.week}}</span>
                 </td>
+                <td class="sum"><span class="calendar__text">Sum</span></td>
             </tr>
          </thead>
+         <tbody *ngFor = 'let departm of teams'>
+
+         </tbody>
     </table>    
 </section>
