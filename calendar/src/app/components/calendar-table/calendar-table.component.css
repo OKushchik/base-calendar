@@ -3,6 +3,9 @@
     padding: 0px;
     box-sizing: border-box;
 }
+.calendar__table{
+    margin: 0 auto;
+}
 .weekendDay {
     background-color:#F0F0F0;
 }
@@ -11,6 +14,8 @@ td {
     text-align: center;
     width: 34px;
     height: 34px;
+    box-sizing: border-box;
+   
 }
 
 thead .day{
@@ -129,9 +134,70 @@ tbody::after{
 }
 .vacation {
     position: absolute;
-    top:0;
+    top:50%;
+    transform: translateY(-50%);
     bottom: 0;
-    display: block;
-z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
     background-color: green;
+    border-radius: 3px;
+    
+    
 }
+
+.btnAdd{
+    border: none;
+    padding-top: 0;
+}
+
+
+/* Add vacation button */
+
+.add-vacation_btn {
+    width: 144px;
+    height: 40px;
+    border-radius: 7px;
+    background-color: #48ba46;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.5;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 20px;
+    transition: all linear 0.2s;
+    border: none;
+    margin-right: 122px;
+    cursor: pointer;
+    color: #fff;
+    margin-top: -24px;
+    
+  }
+  
+  .add-vacation_btn::before,
+  .add-vacation_btn::after {
+    content: "";
+    display: block;
+    width: 13px;
+    height: 1px;
+    background: #fff;
+    position: absolute;
+    top: 50%;
+    left: 16px;
+  }
+  
+  .add-vacation_btn::before {
+    transform: rotate(90deg);
+  }
+  
+  .add-vacation:hover {
+    background-color: #59df57;
+  }
+  
+  .add-vacation_btn:focus {
+    border: none;
+    outline: none;
+  }

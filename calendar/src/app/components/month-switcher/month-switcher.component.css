@@ -12,7 +12,9 @@
     background-color: transparent;
     border: none;
     outline: none;
+    transition: all linear .2s
 }
 .month-switcher__btn:hover{
     cursor: pointer;
+    color: #48ba46;
 }
