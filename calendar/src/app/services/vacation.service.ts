@@ -13,13 +13,13 @@ export class VacationService {
      {
       id: 1,
       startDate: "08.12.2020",
-      endDate: "18.12.2020",
+      endDate: "11.01.2021",
       userId: 1
      },
      {
       id: 2,
       startDate: "20.02.2020",
-      endDate: "22.02.2020",
+      endDate: "22.04.2020",
       userId: 2
      },
      {
@@ -72,8 +72,8 @@ export class VacationService {
      },
      {
       id: 11,
-      startDate: "20.12.2020",
-      endDate: "25.12.2020",
+      startDate: "02.12.2020",
+      endDate: "05.12.2020",
       userId: 1
      }
     ]

@@ -18,32 +18,38 @@ export class UserService {
     {
       id:1,
       name: 'FE_User_1',
-      realm: UserRealm.FRONT_END
+      realm: UserRealm.FRONT_END,
+      vacation: []
     },
     {
       id:2,
       name: 'FE_User_2',
-      realm: UserRealm.FRONT_END
+      realm: UserRealm.FRONT_END,
+      vacation: []
     },
     {
       id:3,
       name: 'FE_User_3',
-      realm: UserRealm.FRONT_END
+      realm: UserRealm.FRONT_END,
+      vacation: []
     },
     {
       id:4,
       name: 'BA_User_1',
-      realm: UserRealm.BACK_END
+      realm: UserRealm.BACK_END,
+      vacation: []
     },
     {
       id:5,
       name: 'BA_User_2',
-      realm: UserRealm.BACK_END
+      realm: UserRealm.BACK_END,
+      vacation: []
     },
     {
       id:6,
       name: 'DS_User_1',
-      realm: UserRealm.DESIGNER
+      realm: UserRealm.DESIGNER,
+      vacation: []
     }
   ]
 

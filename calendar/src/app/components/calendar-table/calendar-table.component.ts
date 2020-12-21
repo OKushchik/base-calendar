@@ -19,6 +19,7 @@ export class CalendarTableComponent implements OnInit {
   date: Date;
   daysInMonth: Number;
   arrOfDays: Array<Day>;
+  arr: Array<any>
 
   users: User[];
   vacations: Vacation[];
@@ -36,25 +37,26 @@ export class CalendarTableComponent implements OnInit {
   ngOnInit() {
     this.getDaysInMonth();
     this.getArrOfDays();
-    // this.checkVacation();
 
     this._dateService.switchMonth().subscribe((val) => {
       this.date = val;
       this.getDaysInMonth();
       this.getArrOfDays();
       this.checkVacation()
+      this.addVacationToUser ()
     });
 
     this._userService.getUsers().subscribe((val) => {
       this.users = val;
       this.getTeams();
-      console.log(this.users);
+      this.checkVacation()
+      // this.addVacationToUser();
     });
 
     this._vacationService.getVacations().subscribe((val) => {
       this.vacations = val;
       this.checkVacation();
-
+      this.addVacationToUser()
     });
 
    
@@ -124,6 +126,7 @@ export class CalendarTableComponent implements OnInit {
         }
       }
     }
+    // console.log(this.teams)
   }
   // getVacation() {
   //   let currentMonth = {
@@ -148,7 +151,7 @@ export class CalendarTableComponent implements OnInit {
       end: new Date(this.date.getFullYear(), this.date.getMonth()+1, 1).getTime()-1,
 
     }
-    let arr = [];
+    this.arr = [];
     for (let i = 0; i < this.vacations.length; i++) {
       if(this.convertedDate(this.vacations[i].startDate).getTime() > currentMonth.start &&
          this.convertedDate(this.vacations[i].endDate).getTime() < currentMonth.end){
@@ -157,12 +160,52 @@ export class CalendarTableComponent implements OnInit {
         start: this.convertedDate(this.vacations[i].startDate).getDate(),
         end: this.convertedDate(this.vacations[i].endDate).getDate()
       }
-      arr.push(obj)
+      this.arr.push(obj)
       }
+      if(this.convertedDate(this.vacations[i].startDate).getTime() > currentMonth.start &&
+         this.convertedDate(this.vacations[i].endDate).getTime() > currentMonth.end &&
+         this.convertedDate(this.vacations[i].startDate).getTime() < currentMonth.end){
+          let obj = {
+            id: this.vacations[i].userId,
+            start: this.convertedDate(this.vacations[i].startDate).getDate(),
+            end: this.daysInMonth
+          }
+          this.arr.push(obj)
+         }
+      if(this.convertedDate(this.vacations[i].startDate).getTime() < currentMonth.start &&
+        this.convertedDate(this.vacations[i].endDate).getTime() < currentMonth.end &&
+        this.convertedDate(this.vacations[i].endDate).getTime() > currentMonth.start){
+        let obj = {
+          id: this.vacations[i].userId,
+          start: 1,
+          end: this.convertedDate(this.vacations[i].endDate).getDate(),
+        }
+        this.arr.push(obj)
+      }
+      if(this.convertedDate(this.vacations[i].startDate).getTime() < currentMonth.start &&
+      this.convertedDate(this.vacations[i].endDate).getTime() > currentMonth.end){
+      let obj = {
+        id: this.vacations[i].userId,
+        start: 1,
+        end: this.daysInMonth,
+      }
+      this.arr.push(obj)
+    }
       
     }
-    console.log(arr)
 
+
+  }
+  addVacationToUser (){
+    for(let i=0; i<this.users.length; i++){
+      this.users[i].vacation = []
+      for(let j=0; j<this.arr.length; j++) {
+        if(this.users[i].id === this.arr[j].id){
+            this.users[i].vacation.push(this.arr[j])
+        }
+      }
+    }
+    
   }
   // get teamsEntity(): Team[] {}
 
