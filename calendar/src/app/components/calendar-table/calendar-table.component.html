@@ -100,7 +100,7 @@
                     <td class="team__user-name">{{user.name}}</td>
                     <td *ngFor = 'let day of arrOfDays' [class]="day.isWeekend? 'weekendDay day':'day'">
                         <div *ngFor = 'let vocation of user.vacation'>
-                            <div *ngIf="day.num >= vocation.start && day.num <= vocation.end">+</div>
+                            <div *ngIf="day.num === vocation.start" class="vacation" [ngStyle]="{'width': 'calc(34*' + vocation.duration + 'px)'}">+</div>
                         </div> 
                     </td>
                     <td class="sum"><span class="calendar__text">Sum</span></td>

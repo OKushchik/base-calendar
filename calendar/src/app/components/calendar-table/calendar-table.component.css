@@ -21,6 +21,7 @@ thead .day{
 .day{
     font-size: 12px;
     line-height: 1.4;
+    position: relative;
 }
 
 thead .day span:last-child{
@@ -125,4 +126,12 @@ tbody::after{
     text-align: left;
     font-size: 12px;
     font-weight: 400;
+}
+.vacation {
+    position: absolute;
+    top:0;
+    bottom: 0;
+    display: block;
+z-index: 10;
+    background-color: green;
 }
