@@ -22,6 +22,7 @@ export class CalendarTableComponent implements OnInit {
 
   users: User[];
   vacations: Vacation[];
+  hideme: any = {};
 
   constructor(
     private _dateService: DateService,
@@ -110,9 +111,18 @@ export class CalendarTableComponent implements OnInit {
     this.teams = [];
     for (let key in UserRealm) {
       this.teams.push({
-        realm: UserRealm[String(key)],
+        // realm: UserRealm[String(key)],
+        realm: <UserRealm>key,
         participants: [],
       });
+    }
+    for (let key in this.teams){
+      for (let keyuser in this.users){
+        // if (this.teams[key].realm == this.users[keyuser].realm){
+        if (UserRealm[this.teams[key].realm] == this.users[keyuser].realm){
+          this.teams[key].participants.push(this.users[keyuser]);
+        }
+      }
     }
   }
   // getVacation() {

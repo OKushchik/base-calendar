@@ -1,12 +1,128 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
 .weekendDay {
-    background-color: gray;
+    background-color:#F0F0F0;
 }
-.day, .sum {
-    border: 1px solid black;
+td {
+    border: 1px solid #D7D7D7;
     text-align: center;
-    width: 30px;
-    height: 30px;
+    width: 34px;
+    height: 34px;
 }
+
+thead .day{
+    height: 64px;
+    font-size: 12px;
+}
+
+.day{
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+thead .day span:last-child{
+    font-weight: 600;
+    display: block;
+    padding-top: 5px;
+}
+
+
+
+table .team:first-of-type .team__firstRow{
+    background: rgba(155, 153, 255, 0.1);
+}
+table .team:nth-of-type(2) .team__firstRow{
+    background: rgba(122, 175, 255, 0.1);
+}
+
+table .team:nth-of-type(3) .team__firstRow{
+    background: rgba(255, 153, 153, 0.1);
+}
+
+table .team:nth-of-type(4) .team__firstRow{
+    background: rgba(255, 167, 104, 0.1);
+}
+
 table {
     border-collapse: collapse;
+}
+.team__title-wrap{
+    display: grid;
+    grid-template-columns: 3fr 30px 30px 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    grid-column-gap: 10px;
+}
+
+tbody::after{
+    height: 34px;
+    display: block;
+    content: " ";
+}
+
+.team__title{
+    width: 260px;
+    text-align: left;
+    font-size: 12px;
+}
+
+.team__name{
+    font-weight: 600;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+}
+
+.team__amount{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #949494;
+}
+
+
+.team__amount-icon{
+    margin-right: 3px;
+    display: flex;
+    align-items: center;
+    height: 12px;
+    width: 12px;
+    margin-bottom: 2px;
+}
+
+.team__amount-icon svg{
+    height: 100%;
+    width: 100%;
+}
+
+.team__percent{
+    background-color: #9B99FF;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    text-align: center;
+    color: white;
+    border-radius: 2px;
+}
+
+.team__close{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.team__close svg{
+    height: 7px;
+    width: 12px;
+}
+
+.team__user-name{
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: left;
+    font-size: 12px;
+    font-weight: 400;
 }

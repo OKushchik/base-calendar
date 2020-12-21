@@ -39,6 +39,11 @@ export class UserService {
       id:5,
       name: 'BA_User_2',
       realm: UserRealm.BACK_END
+    },
+    {
+      id:6,
+      name: 'DS_User_1',
+      realm: UserRealm.DESIGNER
     }
   ]
 
