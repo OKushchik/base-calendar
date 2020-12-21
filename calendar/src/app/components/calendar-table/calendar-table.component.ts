@@ -29,18 +29,19 @@ export class CalendarTableComponent implements OnInit {
     private _vacationService: VacationService
   ) {
     this.date = new Date();
-    // this.vacations = _vacationService.vacations
+    this.vacations = _vacationService.vacations
   }
 
   ngOnInit() {
     this.getDaysInMonth();
     this.getArrOfDays();
-    console.log(this.arrOfDays);
+    // this.checkVacation();
 
     this._dateService.switchMonth().subscribe((val) => {
       this.date = val;
       this.getDaysInMonth();
       this.getArrOfDays();
+      this.checkVacation()
     });
 
     this._userService.getUsers().subscribe((val) => {
@@ -51,7 +52,8 @@ export class CalendarTableComponent implements OnInit {
 
     this._vacationService.getVacations().subscribe((val) => {
       this.vacations = val;
-      console.log(this.vacations);
+      this.checkVacation();
+
     });
 
    
@@ -129,6 +131,28 @@ export class CalendarTableComponent implements OnInit {
 
   convertedDate(day){
     return new Date(day.split(".").reverse().join("-"))
+  }
+  checkVacation(){
+    let currentMonth = {
+      start: new Date(this.date.getFullYear(), this.date.getMonth(), 1).getTime(),
+      end: new Date(this.date.getFullYear(), this.date.getMonth()+1, 1).getTime()-1,
+
+    }
+    let arr = [];
+    for (let i = 0; i < this.vacations.length; i++) {
+      if(this.convertedDate(this.vacations[i].startDate).getTime() > currentMonth.start &&
+         this.convertedDate(this.vacations[i].endDate).getTime() < currentMonth.end){
+      let obj = {
+        id: this.vacations[i].userId,
+        start: this.convertedDate(this.vacations[i].startDate).getDate(),
+        end: this.convertedDate(this.vacations[i].endDate).getDate()
+      }
+      arr.push(obj)
+      }
+      
+    }
+    console.log(arr)
+
   }
   // get teamsEntity(): Team[] {}
 
