@@ -158,7 +158,8 @@ export class CalendarTableComponent implements OnInit {
       let obj = {
         id: this.vacations[i].userId,
         start: this.convertedDate(this.vacations[i].startDate).getDate(),
-        end: this.convertedDate(this.vacations[i].endDate).getDate()
+        end: this.convertedDate(this.vacations[i].endDate).getDate(),
+        duration: this.convertedDate(this.vacations[i].endDate).getDate() - this.convertedDate(this.vacations[i].startDate).getDate() + 1
       }
       this.arr.push(obj)
       }
@@ -168,7 +169,8 @@ export class CalendarTableComponent implements OnInit {
           let obj = {
             id: this.vacations[i].userId,
             start: this.convertedDate(this.vacations[i].startDate).getDate(),
-            end: this.daysInMonth
+            end: this.daysInMonth,
+            duration: +this.daysInMonth - this.convertedDate(this.vacations[i].startDate).getDate() + 1
           }
           this.arr.push(obj)
          }
@@ -179,6 +181,7 @@ export class CalendarTableComponent implements OnInit {
           id: this.vacations[i].userId,
           start: 1,
           end: this.convertedDate(this.vacations[i].endDate).getDate(),
+          duration: this.convertedDate(this.vacations[i].endDate).getDate()
         }
         this.arr.push(obj)
       }
@@ -188,6 +191,7 @@ export class CalendarTableComponent implements OnInit {
         id: this.vacations[i].userId,
         start: 1,
         end: this.daysInMonth,
+        duration: this.daysInMonth
       }
       this.arr.push(obj)
     }
@@ -205,8 +209,10 @@ export class CalendarTableComponent implements OnInit {
         }
       }
     }
-    
+    console.log(this.users)
   }
+
+  
   // get teamsEntity(): Team[] {}
 
   // monthDaysEntity(): Day[] {}
