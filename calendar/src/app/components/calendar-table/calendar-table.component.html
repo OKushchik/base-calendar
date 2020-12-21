@@ -44,7 +44,7 @@
     <table class="calendar__table">
         <thead>
             <tr>
-                <td class="btnAdd"><button>add vacation</button></td>
+                <td class="btnAdd"><button class="add-vacation_btn">Add Vacation</button></td>
                 <td *ngFor = 'let day of arrOfDays' [class]="day.isWeekend? 'weekendDay day':'day'">
                     <span>{{day.num}}</span>
                     <br>
@@ -100,7 +100,7 @@
                     <td class="team__user-name">{{user.name}}</td>
                     <td *ngFor = 'let day of arrOfDays' [class]="day.isWeekend? 'weekendDay day':'day'">
                         <div *ngFor = 'let vocation of user.vacation'>
-                            <div *ngIf="day.num === vocation.start" class="vacation" [ngStyle]="{'width': 'calc(34*' + vocation.duration + 'px)'}">+</div>
+                            <div *ngIf="day.num === vocation.start" class="vacation" [ngStyle]="{'width': 'calc(34*' + vocation.duration + 'px)','height':'30px'}">+</div>
                         </div> 
                     </td>
                     <td class="sum"><span class="calendar__text">Sum</span></td>

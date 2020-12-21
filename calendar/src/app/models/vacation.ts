@@ -3,5 +3,6 @@ export interface Vacation {
   startDate: string;
   endDate: string;
   userId: number;
+  type: string;
 }
 
