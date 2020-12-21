@@ -99,7 +99,11 @@
                 <tr [hidden]="hideme[departm.realm]" *ngFor = 'let user of departm.participants'>
                     <td class="team__user-name">{{user.name}}</td>
                     <td *ngFor = 'let day of arrOfDays' [class]="day.isWeekend? 'weekendDay day':'day'">
-                        
+                        <div *ngIf="user.vacation">
+                            <div *ngFor = 'let vocation of user.vacation'>
+                                <div *ngIf="day.num >= vocation.start && day.num <= vocation.end">+</div>
+                            </div> 
+                        </div>
                     </td>
                     <td class="sum"><span class="calendar__text">Sum</span></td>
                 </tr>

@@ -10,4 +10,5 @@ export interface User {
   // email: string;
   // role: string;
   realm: UserRealm;
+  vacation: any;
 }

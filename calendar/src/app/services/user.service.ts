@@ -8,7 +8,7 @@ import { map } from "rxjs/operators";
 })
 export class UserService {
 
-  observable:Observable<User[]>
+  // observable:Observable<User[]>
   
   constructor() {
     // this.observable = new Observable<User[]>();
@@ -18,37 +18,43 @@ export class UserService {
     {
       id:1,
       name: 'FE_User_1',
-      realm: UserRealm.FRONT_END
+      realm: UserRealm.FRONT_END,
+      vacation: []
     },
     {
       id:2,
       name: 'FE_User_2',
-      realm: UserRealm.FRONT_END
+      realm: UserRealm.FRONT_END,
+      vacation: []
     },
     {
       id:3,
       name: 'FE_User_3',
-      realm: UserRealm.FRONT_END
+      realm: UserRealm.FRONT_END,
+      vacation: []
     },
     {
       id:4,
       name: 'BA_User_1',
-      realm: UserRealm.BACK_END
+      realm: UserRealm.BACK_END,
+      vacation: []
     },
     {
       id:5,
       name: 'BA_User_2',
-      realm: UserRealm.BACK_END
+      realm: UserRealm.BACK_END,
+      vacation: []
     },
     {
       id:6,
       name: 'DS_User_1',
-      realm: UserRealm.DESIGNER
+      realm: UserRealm.DESIGNER,
+      vacation: []
     }
   ]
 
   getUsers() {
-    return new Observable(subscriber => {
+    return new Observable<User[]>(subscriber => {
       subscriber.next(this.users);
     })
   }
