@@ -18,7 +18,7 @@ export class CalendarTableComponent implements OnInit {
   date: Date;
   daysInMonth: Number;
   arrOfDays: Array<Day>;
-
+  hideme: any = {};
   users: any;
   vacations: any;
 
@@ -105,9 +105,18 @@ export class CalendarTableComponent implements OnInit {
     this.teams = [];
     for (let key in UserRealm) {
       this.teams.push({
-        realm: UserRealm[key],
+        // realm: UserRealm[String(key)],
+        realm: <UserRealm>key,
         participants: [],
       });
+    }
+    for (let key in this.teams){
+      for (let keyuser in this.users){
+        // if (this.teams[key].realm == this.users[keyuser].realm){
+        if (UserRealm[this.teams[key].realm] == this.users[keyuser].realm){
+          this.teams[key].participants.push(this.users[keyuser]);
+        }
+      }
     }
   }
 
