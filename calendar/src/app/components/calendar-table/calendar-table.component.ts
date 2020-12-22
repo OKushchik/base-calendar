@@ -62,7 +62,7 @@ export class CalendarTableComponent implements OnInit {
       this.addVacationToUser()
     });
 
-   
+
 
 
     // you need to get users
@@ -198,7 +198,7 @@ export class CalendarTableComponent implements OnInit {
       }
       this.arr.push(obj)
     }
-      
+
     }
 
 
@@ -212,10 +212,22 @@ export class CalendarTableComponent implements OnInit {
         }
       }
     }
-    console.log(this.users)
   }
 
-  
+  countSum(vacations:any){
+    let sum : number = 0;
+    vacations.forEach((elem) => {
+      sum += elem.duration;
+      this.arrOfDays.forEach((element)=>{
+        if(element.num >= elem.start && element.num <= elem.end && element.isWeekend){
+          sum -= 1;
+        }
+      });
+    });
+
+    return sum;
+  }
+
   // get teamsEntity(): Team[] {}
 
   // monthDaysEntity(): Day[] {}
