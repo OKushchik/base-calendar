@@ -57,7 +57,7 @@
         <td class="sum"><span class="calendar__text">Sum</span></td>
       </tr>
     </thead>
-    <tbody class="team" *ngFor="let departm of teams">
+    <tbody [ngClass]="departm.realm" class="team" *ngFor="let departm of teams">
       <tr class="team__firstRow">
         <td class="team__title">
           <div class="team__title-wrap">
@@ -149,8 +149,7 @@
             <div *ngFor="let vocation of user.vacation">
               <div
                 *ngIf="day.num === vocation.start"
-                class="vacation" 
-                [ngStyle]="{
+                class="vacation" [ngClass]="vocation.type" [ngStyle]="{
                   width: 'calc(34*' + vocation.duration + 'px)',
                   height: '30px'
                 }"

@@ -1,210 +1,254 @@
-*{
-    margin: 0px;
-    padding: 0px;
-    box-sizing: border-box;
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
 }
-.calendar__table{
-    margin: 0 auto;
+
+.calendar__table {
+  margin: 0 auto;
 }
+
 .weekendDay {
-    background-color:#F0F0F0;
+  background-color: #F0F0F0;
 }
+
 td {
-    border: 1px solid #D7D7D7;
-    text-align: center;
-    width: 34px;
-    height: 34px;
-    box-sizing: border-box;
-   
+  border: 1px solid #D7D7D7;
+  text-align: center;
+  width: 34px;
+  height: 34px;
+  box-sizing: border-box;
+
 }
 
-thead .day{
-    height: 64px;
-    font-size: 12px;
+thead .day {
+  height: 64px;
+  font-size: 12px;
 }
 
-.day{
-    font-size: 12px;
-    line-height: 1.4;
-    position: relative;
+.day {
+  font-size: 12px;
+  line-height: 1.4;
+  position: relative;
 }
 
-thead .day span:last-child{
-    font-weight: 600;
-    display: block;
-    padding-top: 5px;
+thead .day span:last-child {
+  font-weight: 600;
+  display: block;
+  padding-top: 5px;
 }
 
 
 
-table .team:first-of-type .team__firstRow{
-    background: rgba(155, 153, 255, 0.1);
-}
-table .team:nth-of-type(2) .team__firstRow{
-    background: rgba(122, 175, 255, 0.1);
+table .team:first-of-type .team__firstRow {
+  background: rgba(155, 153, 255, 0.1);
 }
 
-table .team:nth-of-type(3) .team__firstRow{
-    background: rgba(255, 153, 153, 0.1);
+table .team:nth-of-type(2) .team__firstRow {
+  background: rgba(122, 175, 255, 0.1);
 }
 
-table .team:nth-of-type(4) .team__firstRow{
-    background: rgba(255, 167, 104, 0.1);
+table .team:nth-of-type(3) .team__firstRow {
+  background: rgba(255, 153, 153, 0.1);
+}
+
+table .team:nth-of-type(4) .team__firstRow {
+  background: rgba(255, 167, 104, 0.1);
 }
 
 table {
-    border-collapse: collapse;
-}
-.team__title-wrap{
-    display: grid;
-    grid-template-columns: 3fr 30px 30px 20px;
-    padding-left: 20px;
-    padding-right: 20px;
-    grid-column-gap: 10px;
+  border-collapse: collapse;
 }
 
-tbody::after{
-    height: 34px;
-    display: block;
-    content: " ";
+.team__title-wrap {
+  display: grid;
+  grid-template-columns: 3fr 30px 30px 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  grid-column-gap: 10px;
 }
 
-.team__title{
-    width: 260px;
-    text-align: left;
-    font-size: 12px;
+tbody::after {
+  height: 34px;
+  display: block;
+  content: " ";
 }
 
-.team__name{
-    font-weight: 600;
-    line-height: 1;
-    display: flex;
-    align-items: center;
+.team__title {
+  width: 260px;
+  text-align: left;
+  font-size: 12px;
 }
 
-.team__amount{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #949494;
+.team__name {
+  font-weight: 600;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+}
+
+.team__amount {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #949494;
 }
 
 
-.team__amount-icon{
-    margin-right: 3px;
-    display: flex;
-    align-items: center;
-    height: 12px;
-    width: 12px;
-    margin-bottom: 2px;
+.team__amount-icon {
+  margin-right: 3px;
+  display: flex;
+  align-items: center;
+  height: 12px;
+  width: 12px;
+  margin-bottom: 2px;
 }
 
-.team__amount-icon svg{
-    height: 100%;
-    width: 100%;
+.team__amount-icon svg {
+  height: 100%;
+  width: 100%;
 }
 
-.team__percent{
+.team__percent {
+  /* background-color: #9B99FF; */
+  padding-top: 2px;
+  padding-bottom: 2px;
+  text-align: center;
+  color: white;
+  border-radius: 2px;
+}
+
+.FRONT_END .team__percent {
     background-color: #9B99FF;
-    padding-top: 2px;
-    padding-bottom: 2px;
-    text-align: center;
-    color: white;
-    border-radius: 2px;
 }
 
-.team__close{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
+.BACK_END .team__percent {
+    background-color: #7AAFFF;
 }
 
-.team__close svg{
-    height: 7px;
-    width: 12px;
+.DESIGNER .team__percent {
+    background-color: #FF9999;
 }
 
-.team__user-name{
-    padding-left: 20px;
-    padding-right: 20px;
-    text-align: left;
-    font-size: 12px;
-    font-weight: 400;
+.team__close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
+
+.team__close svg {
+  height: 7px;
+  width: 12px;
+}
+
+.team__user-name {
+  padding-left: 20px;
+  padding-right: 20px;
+  text-align: left;
+  font-size: 12px;
+  font-weight: 400;
+}
+
 .vacation {
-    position: absolute;
-    top:50%;
-    transform: translateY(-50%);
-    bottom: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 10;
-    background-color: #9B99FF;
-    border-radius: 3px;
-    color: #fff;
-    
-    
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  border-radius: 3px;
+  color: #fff;
+
+
 }
 
-.vacation:first-child{
-    background-color: #fff;   
+.FRONT_END .vacation {
+  background-color: #9B99FF;
+  border: 1px solid #9B99FF;
 }
 
+.BACK_END .vacation {
+  background-color: #7AAFFF;
+  border: 1px solid #7AAFFF;
+}
 
+.DESIGNER .vacation {
+  background-color: #FF9999;
+  border: 1px solid #FF9999;
+}
 
-.btnAdd{
-    border: none;
-    padding-top: 0;
+.FRONT_END .UnPd {
+  color: #9B99FF;
+  background: rgba(155, 153, 255, 0.1);
+
+}
+
+.BACK_END .UnPd {
+  color: #7AAFFF;
+  background:rgba(122, 175, 255, 0.1);
+
+}
+
+.DESIGNER .UnPd {
+  color: #FF9999;
+  background: rgba(255, 153, 153, 0.1);
+
+}
+
+.btnAdd {
+  border: none;
+  padding-top: 0;
 }
 
 
 /* Add vacation button */
 
 .add-vacation_btn {
-    width: 144px;
-    height: 40px;
-    border-radius: 7px;
-    background-color: #48ba46;
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 1.5;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-left: 20px;
-    transition: all linear 0.2s;
-    border: none;
-    margin-right: 122px;
-    cursor: pointer;
-    color: #fff;
-    margin-top: -24px;
-    
-  }
-  
-  .add-vacation_btn::before,
-  .add-vacation_btn::after {
-    content: "";
-    display: block;
-    width: 13px;
-    height: 1px;
-    background: #fff;
-    position: absolute;
-    top: 50%;
-    left: 16px;
-  }
-  
-  .add-vacation_btn::before {
-    transform: rotate(90deg);
-  }
-  
-  .add-vacation:hover {
-    background-color: #59df57;
-  }
-  
-  .add-vacation_btn:focus {
-    border: none;
-    outline: none;
-  }
+  width: 144px;
+  height: 40px;
+  border-radius: 7px;
+  background-color: #48ba46;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.5;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 20px;
+  transition: all linear 0.2s;
+  border: none;
+  margin-right: 122px;
+  cursor: pointer;
+  color: #fff;
+  margin-top: -24px;
+
+}
+
+.add-vacation_btn::before,
+.add-vacation_btn::after {
+  content: "";
+  display: block;
+  width: 13px;
+  height: 1px;
+  background: #fff;
+  position: absolute;
+  top: 50%;
+  left: 16px;
+}
+
+.add-vacation_btn::before {
+  transform: rotate(90deg);
+}
+
+.add-vacation:hover {
+  background-color: #59df57;
+}
+
+.add-vacation_btn:focus {
+  border: none;
+  outline: none;
+}
