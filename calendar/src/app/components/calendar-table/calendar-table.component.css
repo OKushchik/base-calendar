@@ -141,11 +141,18 @@ tbody::after{
     align-items: center;
     justify-content: center;
     z-index: 10;
-    background-color: green;
+    background-color: #9B99FF;
     border-radius: 3px;
+    color: #fff;
     
     
 }
+
+.vacation:first-child{
+    background-color: #fff;   
+}
+
+
 
 .btnAdd{
     border: none;

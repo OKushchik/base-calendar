@@ -24,6 +24,7 @@ export class CalendarTableComponent implements OnInit {
   users: User[];
   vacations: Vacation[];
   hideme: any = {};
+  vacationType: boolean = true;
 
   constructor(
     private _dateService: DateService,
@@ -159,7 +160,8 @@ export class CalendarTableComponent implements OnInit {
         id: this.vacations[i].userId,
         start: this.convertedDate(this.vacations[i].startDate).getDate(),
         end: this.convertedDate(this.vacations[i].endDate).getDate(),
-        duration: this.convertedDate(this.vacations[i].endDate).getDate() - this.convertedDate(this.vacations[i].startDate).getDate() + 1
+        duration: this.convertedDate(this.vacations[i].endDate).getDate() - this.convertedDate(this.vacations[i].startDate).getDate() + 1,
+        type:this.vacations[i].type
       }
       this.arr.push(obj)
       }
@@ -170,7 +172,8 @@ export class CalendarTableComponent implements OnInit {
             id: this.vacations[i].userId,
             start: this.convertedDate(this.vacations[i].startDate).getDate(),
             end: this.daysInMonth,
-            duration: +this.daysInMonth - this.convertedDate(this.vacations[i].startDate).getDate() + 1
+            duration: +this.daysInMonth - this.convertedDate(this.vacations[i].startDate).getDate() + 1,
+            type:this.vacations[i].type
           }
           this.arr.push(obj)
          }
@@ -181,7 +184,8 @@ export class CalendarTableComponent implements OnInit {
           id: this.vacations[i].userId,
           start: 1,
           end: this.convertedDate(this.vacations[i].endDate).getDate(),
-          duration: this.convertedDate(this.vacations[i].endDate).getDate()
+          duration: this.convertedDate(this.vacations[i].endDate).getDate(),
+          type:this.vacations[i].type
         }
         this.arr.push(obj)
       }
@@ -191,7 +195,8 @@ export class CalendarTableComponent implements OnInit {
         id: this.vacations[i].userId,
         start: 1,
         end: this.daysInMonth,
-        duration: this.daysInMonth
+        duration: this.daysInMonth,
+        type:this.vacations[i].type
       }
       this.arr.push(obj)
     }
@@ -211,6 +216,9 @@ export class CalendarTableComponent implements OnInit {
     }
     console.log(this.users)
   }
+
+
+  
 
   
   // get teamsEntity(): Team[] {}
