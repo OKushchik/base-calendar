@@ -7,6 +7,8 @@ import { Vacation } from "src/app/models/vacation";
 import { DateService } from "../../services/date.service";
 import { UserService } from "../../services/user.service";
 import { VacationService } from "../../services/vacation.service";
+import { MatDialog } from '@angular/material/dialog';
+import { FormModalComponent } from "../calendar-table/form-modal/form-modal.component";
 
 @Component({
   selector: "app-calendar-table",
@@ -28,7 +30,8 @@ export class CalendarTableComponent implements OnInit {
   constructor(
     private _dateService: DateService,
     private _userService: UserService,
-    private _vacationService: VacationService
+    private _vacationService: VacationService,
+    public dialog: MatDialog
   ) {
     this.date = new Date();
     this.vacations = _vacationService.vacations
@@ -220,4 +223,13 @@ export class CalendarTableComponent implements OnInit {
   // generateMonth(date: Date): Month {} // should to get month
 
   // you can create the structure yourself too
+
+  openDialog() {
+    const dialogRef = this.dialog.open(FormModalComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
 }
+

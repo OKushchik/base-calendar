@@ -8,6 +8,9 @@ import { BaseLayoutComponent } from './components/base-layout/base-layout.compon
 import { CalendarTableComponent } from './components/calendar-table/calendar-table.component';
 import { MonthSwitcherComponent } from './components/month-switcher/month-switcher.component';
 import { VacationService } from './services/vacation.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormModalComponent } from './components/calendar-table/form-modal/form-modal.component';
+import { MaterialModule } from './material/material.module';
 
 @NgModule({
   declarations: [
@@ -15,13 +18,19 @@ import { VacationService } from './services/vacation.service';
     ActionBarComponent,
     BaseLayoutComponent,
     CalendarTableComponent,
-    MonthSwitcherComponent
+    MonthSwitcherComponent,
+    FormModalComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MaterialModule
   ],
   providers: [ VacationService ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    FormModalComponent
+  ],
 })
 export class AppModule { }
