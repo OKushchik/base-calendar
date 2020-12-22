@@ -15,56 +15,56 @@ export class VacationService {
       startDate: "08.12.2020",
       endDate: "11.01.2021",
       userId: 1,
-      type: "Paid"
+      type: "Pd"
      },
      {
       id: 2,
       startDate: "20.02.2020",
       endDate: "22.04.2020",
       userId: 2,
-      type: "UnPaid"
+      type: "UnPd"
      },
      {
       id: 3,
       startDate:  "20.03.2020",
       endDate: "22.03.2020",
       userId: 3,
-      type: "Paid"
+      type: "Pd"
      },
      {
       id: 4,
       startDate:"15.12.2020",
       endDate: "22.12.2020",
       userId: 4,
-      type: "UnPaid"
+      type: "Pd"
      },
      {
       id: 5,
       startDate: "22.12.2020",
       endDate: "25.12.2020",
       userId: 5,
-      type: "UnPaid"
+      type: "UnPd"
      },
      {
       id: 6,
       startDate: "20.03.2020",
       endDate: "22.03.2020",
       userId: 1,
-      type: "Paid"
+      type: "Pd"
      },
      {
       id: 7,
       startDate: "10.12.2020",
       endDate: "18.12.2020",
       userId: 2,
-      type: "UnPaid"
+      type: "Pd"
      },
      {
       id: 8,
       startDate: "25.01.2020",
       endDate: "28.01.2020",
       userId: 3,
-      type: "UnPaid"
+      type: "UnPd"
      },
      {
       id: 9,
@@ -78,14 +78,14 @@ export class VacationService {
       startDate: "09.04.2020",
       endDate: "16.04.2020",
       userId: 5,
-      type: "UnPaid"
+      type: "Pd"
      },
      {
       id: 11,
       startDate: "02.12.2020",
       endDate: "05.12.2020",
       userId: 1,
-      type: "Paid"
+      type: "UnPd"
      }
     ]
 
