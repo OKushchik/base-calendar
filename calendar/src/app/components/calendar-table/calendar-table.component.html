@@ -133,7 +133,7 @@
           *ngFor="let day of arrOfDays"
           [class]="day.isWeekend ? 'weekendDay day' : 'day'"
         ></td>
-        <td class="sum"><span class="calendar__text">Sum</span></td>
+        <td class="sum"><span class="calendar__text"></span></td>
       </tr>
       <ng-container>
         <tr
@@ -157,7 +157,7 @@
               </div>
             </div>
           </td>
-          <td class="sum"><span class="calendar__text">Sum</span></td>
+          <td class="sum"><span class="calendar__text">{{countSum(user.vacation)}}</span></td>
         </tr>
       </ng-container>
     </tbody>
