@@ -43,9 +43,8 @@
   <table class="calendar__table">
     <thead>
       <tr>
-        <td class="btnAdd">
-          <button class="add-vacation_btn">Add Vacation</button>
-        </td>
+        <td class="btnAdd"><button class="add-vacation_btn" (click)="openDialog()">Add Vacation</button></td>
+
         <td
           *ngFor="let day of arrOfDays"
           [class]="day.isWeekend ? 'weekendDay day' : 'day'"
