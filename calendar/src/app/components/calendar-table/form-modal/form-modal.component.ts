@@ -62,7 +62,7 @@ constructor(){
 
 }
 ngOnInit(): void {
-  this.form = new FormGroup({});
+
 }
 
 
