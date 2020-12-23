@@ -161,5 +161,20 @@
         </tr>
       </ng-container>
     </tbody>
+    <tbody class="day-person-stats">
+      <tr>
+        <td class="day-person-title">
+          Day Person Stats
+        </td>
+
+        <td
+          *ngFor="let day of arrOfDays"
+          [class]="day.isWeekend ? 'weekendDay-stats day' : 'day'"
+        >
+        {{countStats(day)}}
+        </td>
+        <td class="sum"><span class="calendar__text"></span></td>
+      </tr>
+    </tbody>
   </table>
 </section>

@@ -236,9 +236,22 @@ export class CalendarTableComponent implements OnInit {
 
 
 
-  
+  countStats(day:Day){
+    let sum :number= 0;
+    if(day.isWeekend){
+      return;
+    }
+    this.users.forEach(user => {
+      user.vacation.forEach(vacation => {
+        if(day.num>=vacation.start && day.num <= vacation.end){
+          sum+=1;
+        }
+      });
+    });
+    return sum;
+  }
 
-  
+
 
   // get teamsEntity(): Team[] {}
 

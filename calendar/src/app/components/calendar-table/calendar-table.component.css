@@ -252,3 +252,21 @@ tbody::after {
   border: none;
   outline: none;
 }
+
+.day-person-stats td{
+  background-color: #F3F3F3;
+  border-top: 0px;
+  border-bottom: 0px;
+}
+
+.day-person-stats .weekendDay-stats{
+  background-color: #F0F0F0;
+}
+
+.day-person-title{
+  text-align: left;
+  font-weight: 600;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-size: 12px;
+}
