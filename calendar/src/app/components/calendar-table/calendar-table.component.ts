@@ -42,6 +42,8 @@ export class CalendarTableComponent implements OnInit {
     this.getDaysInMonth();
     this.getArrOfDays();
 
+  
+
     this._dateService.switchMonth().subscribe((val) => {
       this.date = val;
       this.getDaysInMonth();
@@ -52,9 +54,10 @@ export class CalendarTableComponent implements OnInit {
 
     this._userService.getUsers().subscribe((val) => {
       this.users = val;
+      
       this.getTeams();
       this.checkVacation()
-      // this.addVacationToUser();
+      this.addVacationToUser();
     });
 
     this._vacationService.getVacations().subscribe((val) => {
@@ -130,7 +133,7 @@ export class CalendarTableComponent implements OnInit {
         }
       }
     }
-    // console.log(this.teams)
+    console.log(this.teams)
   }
   // getVacation() {
   //   let currentMonth = {
@@ -222,7 +225,8 @@ export class CalendarTableComponent implements OnInit {
 
   countSum(vacations:any){
     let sum : number = 0;
-    vacations.forEach((elem) => {
+    if(vacations){
+          vacations.forEach((elem) => {
       sum += elem.duration;
       this.arrOfDays.forEach((element)=>{
         if(element.num >= elem.start && element.num <= elem.end && element.isWeekend){
@@ -230,6 +234,7 @@ export class CalendarTableComponent implements OnInit {
         }
       });
     });
+    }
 
     return sum;
   }
@@ -238,7 +243,8 @@ export class CalendarTableComponent implements OnInit {
 
   countStats(day:Day){
     let sum :number= 0;
-    if(day.isWeekend){
+    if(this.users){
+      if(day.isWeekend){
       return;
     }
     this.users.forEach(user => {
@@ -248,6 +254,8 @@ export class CalendarTableComponent implements OnInit {
         }
       });
     });
+    }
+    
     return sum;
   }
 

@@ -1,64 +1,23 @@
 import { Injectable } from '@angular/core';
 import { User, UserRealm } from 'src/app/models/user';
 import { Observable } from 'rxjs';
-import { map } from "rxjs/operators"; 
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  // observable:Observable<User[]>
-  
-  constructor() {
-    // this.observable = new Observable<User[]>();
+  users:[]
+
+  constructor(private http: HttpClient) {
+    this.users = [];
+
    }
 
-   users: User[] = [
-    {
-      id:1,
-      name: 'FE_User_1',
-      realm: UserRealm.FRONT_END,
-      vacation: []
-    },
-    {
-      id:2,
-      name: 'FE_User_2',
-      realm: UserRealm.FRONT_END,
-      vacation: []
-    },
-    {
-      id:3,
-      name: 'FE_User_3',
-      realm: UserRealm.FRONT_END,
-      vacation: []
-    },
-    {
-      id:4,
-      name: 'BA_User_1',
-      realm: UserRealm.BACK_END,
-      vacation: []
-    },
-    {
-      id:5,
-      name: 'BA_User_2',
-      realm: UserRealm.BACK_END,
-      vacation: []
-    },
-    {
-      id:6,
-      name: 'DS_User_1',
-      realm: UserRealm.DESIGNER,
-      vacation: []
-    }
-  ]
-
-  getUsers() {
-    return new Observable<User[]>(subscriber => {
-      subscriber.next(this.users);
-    })
+  private _url: string = " http://localhost:3000/users"
+  getUsers():Observable<User[]> {
+    return this.http.get<User[]>(this._url)
   }
-  
 
-  // getUserById(): Observable<User>
 }

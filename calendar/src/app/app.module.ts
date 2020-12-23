@@ -11,6 +11,7 @@ import { VacationService } from './services/vacation.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormModalComponent } from './components/calendar-table/form-modal/form-modal.component';
 import { MaterialModule } from './material/material.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { MaterialModule } from './material/material.module';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    HttpClientModule
   ],
   providers: [ VacationService ],
   bootstrap: [AppComponent],
