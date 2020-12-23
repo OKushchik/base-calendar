@@ -48,7 +48,7 @@ export const MY_FORMATS = {
 export class FormModalComponent implements OnInit {
   dateFirst:Number;
   dateSecond:Number;
-  result:Number;
+  result:Number|string;
   dateCountTitle:String;
 
 
@@ -58,7 +58,7 @@ constructor(){
   this.dateCountTitle = "Day"
   this.dateFirst = new Date().setHours(0, 0, 0, 0)
   this.dateSecond = new Date().setHours(0, 0, 0, 0)
-  
+
 
 }
 ngOnInit(): void {
@@ -75,7 +75,7 @@ ngOnInit(): void {
   'Paid PD', 'Unpaid UP'
 ];
 valuechange1 (event){
-  this.dateFirst = event._d.getTime() 
+  this.dateFirst = event._d.getTime()
   this.durationVocation()
 }
 valuechange2 (event){
@@ -84,8 +84,13 @@ valuechange2 (event){
 }
 durationVocation(){
   this.result = ((+this.dateSecond - +this.dateFirst + 86400000)/86400000);
+  this.dateCountTitle = "Day"
   if(this.result > 1) {
     this.dateCountTitle = "Days"
+  }
+  if(this.result < 1) {
+    this.dateCountTitle = "Invalid date"
+    this.result = "";
   }
 }
 }
