@@ -23,6 +23,8 @@ export class CalendarTableComponent implements OnInit {
   arrOfDays: Array<Day>;
   arr: Array<any>
 
+  isLoading: boolean
+
   users: User[];
   vacations: Vacation[];
   hideme: any = {};
@@ -41,15 +43,18 @@ export class CalendarTableComponent implements OnInit {
   ngOnInit() {
     this.getDaysInMonth();
     this.getArrOfDays();
+    this.isLoading = true;
 
   
 
     this._dateService.switchMonth().subscribe((val) => {
+      
       this.date = val;
       this.getDaysInMonth();
       this.getArrOfDays();
       this.checkVacation()
       this.addVacationToUser ()
+
     });
 
     this._userService.getUsers().subscribe((val) => {
@@ -58,6 +63,7 @@ export class CalendarTableComponent implements OnInit {
       this.getTeams();
       this.checkVacation()
       this.addVacationToUser();
+      this.isLoading = false;
     });
 
     this._vacationService.getVacations().subscribe((val) => {
@@ -133,7 +139,6 @@ export class CalendarTableComponent implements OnInit {
         }
       }
     }
-    console.log(this.teams)
   }
   // getVacation() {
   //   let currentMonth = {
@@ -212,7 +217,8 @@ export class CalendarTableComponent implements OnInit {
 
   }
   addVacationToUser (){
-    for(let i=0; i<this.users.length; i++){
+    if (this.users){
+          for(let i=0; i<this.users.length; i++){
       this.users[i].vacation = []
       for(let j=0; j<this.arr.length; j++) {
         if(this.users[i].id === this.arr[j].id){
@@ -220,6 +226,8 @@ export class CalendarTableComponent implements OnInit {
         }
       }
     }
+    }
+
   }
 
 

@@ -39,7 +39,7 @@
 <!--  </table>-->
 <!--</section>-->
 
-<section class="calendar">
+<section *ngIf="!isLoading; else loading"  class="calendar">
   <table class="calendar__table">
     <thead>
       <tr>
@@ -178,3 +178,8 @@
     </tbody>
   </table>
 </section>
+<ng-template #loading> 
+
+<div class="loader">loading....</div>
+
+</ng-template>
