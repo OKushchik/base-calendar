@@ -109,6 +109,7 @@ export class CalendarTableComponent implements OnInit {
       this.teams.push({
         realm: <UserRealm>key,
         participants: [],
+        procent:0
       });
     }
     for (let key in this.teams){
@@ -122,24 +123,15 @@ export class CalendarTableComponent implements OnInit {
   }
 
   procentVacationInTeam(){
-    // console.log(this.teams)
     for (let i = 0; i < this.teams.length; i++) {
-      // console.log(this.teams[i])
        let countDaysInVacation = 0
       for (let j = 0; j < this.teams[i].participants.length; j++) {
-       
         for (let k = 0; k < this.teams[i].participants[j].vacation.length; k++) {
-          // 
-          
           countDaysInVacation += this.teams[i].participants[j].vacation[k].duration
-          
-     
         }
-       
       }
-  this.teams[i].procent = Math.round(countDaysInVacation/(+this.daysInMonth*this.teams[i].participants.length)*100)
+      this.teams[i].procent = Math.round(countDaysInVacation/(+this.daysInMonth*this.teams[i].participants.length)*100)
     }
-console.log(this.teams)
   }
 
 
