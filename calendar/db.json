@@ -60,13 +60,6 @@
       "type": "Pd"
     },
     {
-      "id": 7,
-      "startDate": "10.12.2020",
-      "endDate": "18.12.2020",
-      "userId": 2,
-      "type": "Pd"
-    },
-    {
       "id": 8,
       "startDate": "25.01.2020",
       "endDate": "28.01.2020",
@@ -88,20 +81,6 @@
       "type": "Pd"
     },
     {
-      "id": 1608815578581,
-      "startDate": "04.01.2021",
-      "endDate": "07.01.2021",
-      "userId": 1,
-      "type": "Pd"
-    },
-    {
-      "id": 1608823894873,
-      "startDate": "11.01.2021",
-      "endDate": "18.01.2021",
-      "userId": 3,
-      "type": "Pd"
-    },
-    {
       "id": 1608824084530,
       "startDate": "15.02.2021",
       "endDate": "19.02.2021",
@@ -109,60 +88,18 @@
       "type": "Pd"
     },
     {
-      "id": 1608824493015,
-      "startDate": "08.02.2021",
-      "endDate": "11.02.2021",
-      "userId": 6,
+      "id": 1608846341327,
+      "startDate": "25.12.2020",
+      "endDate": "30.12.2020",
+      "userId": 1,
       "type": "Pd"
     },
     {
-      "id": 1608824630660,
-      "startDate": "05.01.2021",
-      "endDate": "08.01.2021",
-      "userId": 5,
-      "type": "Pd"
-    },
-    {
-      "id": 1608826049713,
-      "startDate": "05.01.2021",
-      "endDate": "08.01.2021",
-      "userId": 6,
-      "type": "UnPd"
-    },
-    {
-      "id": 1608826154414,
-      "startDate": "15.01.2021",
-      "endDate": "20.01.2021",
-      "userId": 6,
-      "type": "Pd"
-    },
-    {
-      "id": 1608830209640,
+      "id": 1608846515835,
       "startDate": "25.12.2020",
       "endDate": "31.12.2020",
-      "userId": 6,
-      "type": "Pd"
-    },
-    {
-      "id": 1608834333922,
-      "startDate": "24.12.2020",
-      "endDate": "30.12.2020",
-      "userId": 4,
-      "type": "Pd"
-    },
-    {
-      "id": 1608835724794,
-      "startDate": "24.12.2020",
-      "endDate": "27.12.2020",
-      "userId": 1,
+      "userId": 3,
       "type": "UnPd"
-    },
-    {
-      "id": 1608837915974,
-      "startDate": "24.12.2020",
-      "endDate": "30.12.2020",
-      "userId": 2,
-      "type": "Pd"
     }
   ]
 }

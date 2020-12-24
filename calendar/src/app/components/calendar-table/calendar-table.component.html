@@ -74,6 +74,7 @@
             <p class="team__percent">{{ departm.procent}}%</p>
             <div
               (click)="hideme[departm.realm] = !hideme[departm.realm]"
+              [ngClass]="{'team__close--rotated':hideme[departm.realm]}"
               class="team__close"
             >
               <svg
@@ -108,7 +109,7 @@
               <div
                 *ngIf="day.num === vocation.start" [attr.data-id]="vocation.idVacation" (click) = "deleteVacation($event)"
                 class="vacation" [ngClass]="vocation.type" [ngStyle]="{
-                  width: 'calc(34*' + vocation.duration + 'px)',
+                  width: 'calc(34*' + vocation.duration + 'px - 5px)',
                   height: '30px'
                 }"
               >
@@ -140,8 +141,17 @@
 
 
 
-<ng-template #loading> 
+<ng-template #loading>
 
-<div class="loader">loading....</div>
+<div class="loader">
+  <div class="loader-block">
+    <div class="loader-plus">
+      +
+    </div>
+    <p class="loader-text">
+      Page is loading...
+    </p>
+  </div>
+</div>
 
 </ng-template>

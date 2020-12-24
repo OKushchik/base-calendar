@@ -137,9 +137,15 @@ tbody::after {
   cursor: pointer;
 }
 
+.team__close--rotated svg{
+  transform: rotate(180deg);
+}
+
 .team__close svg {
   height: 7px;
   width: 12px;
+  transition: 200ms ease-in-out;
+  transform-origin: center center;
 }
 
 .team__user-name {
@@ -153,7 +159,8 @@ tbody::after {
 .vacation {
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translateY(calc(-50% - 0.5px));
+  left: 2px;
   bottom: 0;
   display: flex;
   align-items: center;
@@ -161,7 +168,7 @@ tbody::after {
   z-index: 10;
   border-radius: 3px;
   color: #fff;
-
+  margin-bottom: 2px;
 
 }
 .vacation:hover {
@@ -276,11 +283,57 @@ tbody::after {
 .loader {
     position: absolute;
     top:0;
-    bottom: 0;
-    right: 0;
     left: 0;
-    background-color: gray;
-    text-align: center;
-    padding-top: 20%;
-    font-size: 50px;
+    height: 100vh;
+    width: 100vw;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loader-block{
+  height: 400px;
+  width: 400px;
+  background-color: white;
+  box-shadow: 0px 4px 15px 5px rgba(0,0,0,0.28);
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.loader-plus{
+  font-size: 180px;
+  line-height: 180px;
+  padding-top: 3px;
+  font-weight: 400;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  animation: 600ms ease-in-out infinite animate-loader;
+  transform-origin: center center;
+  color: #797979;
+}
+
+.loader-text{
+  font-size: 22px;
+  color: #797979;
+}
+
+.sum{
+  font-size: 12px;
+  background-color: #F3F3F3;
+}
+
+@keyframes animate-loader{
+  0%{
+    transform: rotate(0deg);
+  }
+  80%{
+    transform: rotate(90deg);
+  }
+  100%{
+    transform: rotate(90deg);
+  }
 }
