@@ -8,16 +8,14 @@ import { HttpClient } from '@angular/common/http';
 })
 export class UserService {
 
-  users:[]
+procentOfUsers:Number
 
   constructor(private http: HttpClient) {
-    this.users = [];
-
+    this.procentOfUsers = 0;
    }
 
   private _url: string = " http://localhost:3000/users"
   getUsers():Observable<User[]> {
     return this.http.get<User[]>(this._url)
   }
-
 }

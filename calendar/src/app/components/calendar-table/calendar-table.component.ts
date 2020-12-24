@@ -54,6 +54,7 @@ export class CalendarTableComponent implements OnInit {
       this.getDaysInMonth();
       this.getArrOfDays();
       this.checkVacation()
+      this.getTeams();
       this.addVacationToUser ()
     });
 
@@ -61,7 +62,7 @@ export class CalendarTableComponent implements OnInit {
       this.users = val;
       this.getTeams();
       this.checkVacation()
-      // this.addVacationToUser();
+      this.addVacationToUser();
       this.isLoading = false;
     });
 
@@ -71,7 +72,6 @@ export class CalendarTableComponent implements OnInit {
       this.addVacationToUser()
     });
   }
-
   getDaysInMonth() {
     this.daysInMonth = new Date(
       this.date.getFullYear(),
@@ -122,6 +122,7 @@ export class CalendarTableComponent implements OnInit {
   }
 
   procentVacationInTeam(){
+    console.log(this.teams)
     for (let i = 0; i < this.teams.length; i++) {
        let countDaysInVacation = 0
       for (let j = 0; j < this.teams[i].participants.length; j++) {
@@ -140,6 +141,8 @@ export class CalendarTableComponent implements OnInit {
       count = count + Number(this.teams[i].procent)
     }
     this.procentInFooter = count / this.teams.length
+
+    this._userService.procentOfUsers = this.procentInFooter
   }
 
 
