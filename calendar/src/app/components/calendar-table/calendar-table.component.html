@@ -39,7 +39,7 @@
 <!--  </table>-->
 <!--</section>-->
 
-<section *ngIf="!isLoading; else loading" class="calendar">
+<section *ngIf="!isLoading; else loading" class="calendar"> 
   <table class="calendar__table">
     <thead>
       <tr>
@@ -48,7 +48,6 @@
             Add Vacation
           </button>
         </td>
-
         <td *ngFor="let day of arrOfDays" [class]="day.isWeekend ? 'weekendDay day' : 'day'">
           <span>{{ day.num }}</span>
           <br />
