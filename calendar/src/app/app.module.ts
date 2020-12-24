@@ -14,6 +14,7 @@ import { FormModalComponent } from './components/calendar-table/form-modal/form-
 import { MaterialModule } from './material/material.module';
 import { HttpClientModule } from '@angular/common/http';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +22,8 @@ import { HttpClientModule } from '@angular/common/http';
     BaseLayoutComponent,
     CalendarTableComponent,
     MonthSwitcherComponent,
-    FormModalComponent
+    FormModalComponent,
+
   ],
   imports: [
     BrowserModule,

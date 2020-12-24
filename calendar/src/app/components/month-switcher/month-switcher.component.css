@@ -2,9 +2,11 @@
     display: flex;
     justify-content: center;
     padding: 20px;
+    
 }
 .month-switcher__month {
-    font-size: 21px;
+    font-size: 14px;
+    font-weight: 600;
     width: 180px;
     text-align: center;
 }

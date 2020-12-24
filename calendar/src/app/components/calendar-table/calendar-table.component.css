@@ -4,9 +4,6 @@
   box-sizing: border-box;
 }
 
-.calendar__table {
-  margin: 0 auto;
-}
 
 .weekendDay {
   background-color: #F0F0F0;
@@ -68,6 +65,17 @@ table {
   grid-column-gap: 10px;
 }
 
+.FRONT_END tr {
+  border-left: 3px solid #9B99FF;
+}
+
+.BACK_END tr{
+  border-left: 3px solid #7AAFFF;
+}
+
+.DESIGNER  tr{
+  border-left: 3px solid  #FF9999;
+}
 tbody::after {
   height: 34px;
   display: block;
@@ -110,7 +118,6 @@ tbody::after {
 }
 
 .team__percent {
-  /* background-color: #9B99FF; */
   padding-top: 2px;
   padding-bottom: 2px;
   text-align: center;
