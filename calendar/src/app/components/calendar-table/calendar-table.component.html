@@ -112,7 +112,7 @@
               </div>
               <p>{{ departm.participants.length }}</p>
             </div>
-            <p class="team__percent">0%</p>
+            <p class="team__percent">{{ departm.procent}}%</p>
             <div
               (click)="hideme[departm.realm] = !hideme[departm.realm]"
               class="team__close"
@@ -147,7 +147,7 @@
           >
             <div *ngFor="let vocation of user.vacation">
               <div
-                *ngIf="day.num === vocation.start" [attr.data-id]="vocation.idVacation" (click) = "chooseV($event)"
+                *ngIf="day.num === vocation.start" [attr.data-id]="vocation.idVacation" (click) = "deleteVacation($event)"
                 class="vacation" [ngClass]="vocation.type" [ngStyle]="{
                   width: 'calc(34*' + vocation.duration + 'px)',
                   height: '30px'

@@ -27,9 +27,7 @@ export class CalendarTableComponent implements OnInit {
   arrOfDays: Array<Day>;
   arr: Array<any>
   obs:any
-
   isLoading: boolean
-
   users: User[];
   vacations: Vacation[];
   hideme: any = {};
@@ -44,29 +42,27 @@ export class CalendarTableComponent implements OnInit {
   ) {
     this.date = new Date();
     this.vacations = _vacationService.vacations
-  }
+    }
 
   ngOnInit() {
     this.getDaysInMonth();
     this.getArrOfDays();
     this.isLoading = true;
-
+    
 
     this._dateService.switchMonth().subscribe((val) => {
-      
       this.date = val;
       this.getDaysInMonth();
       this.getArrOfDays();
       this.checkVacation()
       this.addVacationToUser ()
-
     });
 
     this._userService.getUsers().subscribe((val) => {
       this.users = val;
       this.getTeams();
       this.checkVacation()
-      this.addVacationToUser();
+      // this.addVacationToUser();
       this.isLoading = false;
     });
 
@@ -122,16 +118,39 @@ export class CalendarTableComponent implements OnInit {
         }
       }
     }
+
   }
+
+  procentVacationInTeam(){
+    // console.log(this.teams)
+    for (let i = 0; i < this.teams.length; i++) {
+      // console.log(this.teams[i])
+       let countDaysInVacation = 0
+      for (let j = 0; j < this.teams[i].participants.length; j++) {
+       
+        for (let k = 0; k < this.teams[i].participants[j].vacation.length; k++) {
+          // 
+          
+          countDaysInVacation += this.teams[i].participants[j].vacation[k].duration
+          
+     
+        }
+       
+      }
+  this.teams[i].procent = Math.round(countDaysInVacation/(+this.daysInMonth*this.teams[i].participants.length)*100)
+    }
+console.log(this.teams)
+  }
+
 
   convertedDate(day){
     return new Date(day.split(".").reverse().join("-"))
   }
+
   checkVacation(){
     let currentMonth = {
       start: new Date(this.date.getFullYear(), this.date.getMonth(), 1).getTime(),
       end: new Date(this.date.getFullYear(), this.date.getMonth()+1, 1).getTime()-1,
-
     }
     this.arr = [];
     for (let i = 0; i < this.vacations.length; i++) {
@@ -187,36 +206,33 @@ export class CalendarTableComponent implements OnInit {
     }
 
     }
-
   }
+  
   addVacationToUser (){
-    this.obs = []
     if (this.users){
-    for(let i=0; i<this.users.length; i++){
-      this.users[i].vacation = []
-      for(let j=0; j<this.arr.length; j++) {
-        if(this.users[i].id === this.arr[j].id){
+      for(let i=0; i<this.users.length; i++){
+        this.users[i].vacation = []
+        for(let j=0; j<this.arr.length; j++) {
+          if(this.users[i].id === this.arr[j].id){
             this.users[i].vacation.push(this.arr[j])
- 
-        }
+          }
+        }  
       }
-        
     }
-    }
- 
+    this.procentVacationInTeam()
   }
 
   countSum(vacations:any){
     let sum : number = 0;
     if(vacations){
-          vacations.forEach((elem) => {
-      sum += elem.duration;
-      this.arrOfDays.forEach((element)=>{
-        if(element.num >= elem.start && element.num <= elem.end && element.isWeekend){
-          sum -= 1;
-        }
+      vacations.forEach((elem) => {
+        sum += elem.duration;
+        this.arrOfDays.forEach((element)=>{
+          if(element.num >= elem.start && element.num <= elem.end && element.isWeekend){
+            sum -= 1;
+          }
+        });
       });
-    });
     }
 
     return sum;
@@ -227,14 +243,14 @@ export class CalendarTableComponent implements OnInit {
     if(this.users){
       if(day.isWeekend){
       return;
-    }
-    this.users.forEach(user => {
-      user.vacation.forEach(vacation => {
-        if(day.num>=vacation.start && day.num <= vacation.end){
-          sum+=1;
-        }
+      }
+      this.users.forEach(user => {
+        user.vacation.forEach(vacation => {
+          if(day.num>=vacation.start && day.num <= vacation.end){
+            sum+=1;
+          }
+        });
       });
-    });
     }
     
     return sum;
@@ -242,13 +258,12 @@ export class CalendarTableComponent implements OnInit {
 
   openDialog() {
     const dialogRef = this.dialog.open(FormModalComponent);
-
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
   }
 
-  chooseV(event){
+  deleteVacation(event){
     console.log(event.target.closest('.vacation'))
     let test = confirm("Delete this vacation?")
     if(test){
@@ -259,9 +274,6 @@ export class CalendarTableComponent implements OnInit {
     });
     document.location.reload();
     }
-
   }
-
-
 }
 
