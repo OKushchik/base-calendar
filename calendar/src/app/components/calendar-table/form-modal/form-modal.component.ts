@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl} from '@angular/forms';
+import {FormControl,Validators, FormGroup} from '@angular/forms';
 
 import {MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS} from '@angular/material-moment-adapter';
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
 
+import { UserService } from "../../../services/user.service";
+import { User } from "src/app/models/user";
 
+import { HttpClient, HttpHeaders  } from '@angular/common/http';
 
 
 import * as _moment from 'moment';
@@ -30,7 +33,6 @@ export const MY_FORMATS = {
   },
 };
 
-
 @Component({
   selector: 'app-form-modal',
   templateUrl: './form-modal.component.html',
@@ -50,30 +52,45 @@ export class FormModalComponent implements OnInit {
   dateSecond:Number;
   result:Number|string;
   dateCountTitle:String;
+  users:User[];
+  form: FormGroup
+  selectedValue: string;
+  isValid:boolean
 
+  states: string[] = [
+  'Pd', 'UnPd'
+];
+private _url: string = " http://localhost:3000/vacations"
 
-constructor(){
-  moment.locale('ru');
-  this.result = 1;
+constructor(private _userService: UserService,
+  private http: HttpClient){
+  
+  this.result = 0;
   this.dateCountTitle = "Day"
   this.dateFirst = new Date().setHours(0, 0, 0, 0)
   this.dateSecond = new Date().setHours(0, 0, 0, 0)
-
-
-}
-ngOnInit(): void {
+  this.users = []
+  this.isValid = false
 
 }
 
+ngOnInit() {
+  this.form = new FormGroup({
+    picker1: new FormControl(),
+    picker2: new FormControl(),
+    panelStates: new FormControl(),
+    user: new FormControl()
+  });
+
+  this._userService.getUsers().subscribe((val) => {
+    this.users = val;
+  });
+}
 
  minDate = new Date();
- date = new FormControl(moment());
- selectedValue: string;
 
- panelStates = new FormControl('Paid PD');
- states: string[] = [
-  'Paid PD', 'Unpaid UP'
-];
+
+
 valuechange1 (event){
   this.dateFirst = event._d.getTime()
   this.durationVocation()
@@ -92,5 +109,52 @@ durationVocation(){
     this.dateCountTitle = "Invalid date"
     this.result = "";
   }
+
 }
+
+user = new FormControl('', Validators.required);
+picker1 = new FormControl('', Validators.required);
+picker2 = new FormControl('', Validators.required);
+date = new FormControl(moment(), Validators.required);
+panelStates = new FormControl('', Validators.required);
+
+
+submit() {
+  let formData = this.form.value;
+
+  let userObj = {
+    id: new Date().getTime(),
+    startDate: this.convertDate (formData.picker1._d),
+    endDate: this.convertDate (formData.picker2._d),
+    userId: formData.user.id,
+    type: formData.panelStates
+    }
+    console.log(userObj)
+    const headers = new HttpHeaders()
+    .set('Authorization', 'my-auth-token')
+    .set('Content-Type', 'application/json');
+
+    this.http.post(this._url, JSON.stringify(userObj), {
+      headers: headers
+    })
+    .subscribe(data => {
+      console.log(data);
+    });
+    document.location.reload();
+}
+
+
+convertDate (date){
+  let month:Number | String = new Date(date).getMonth()+1
+  let day:Number | String = new Date(date).getDate()
+  let year = new Date(date).getFullYear()
+  if(day<10){
+    day = '0'+ day
+  }
+  if(month<10){
+    month = '0'+ month
+  }
+  return (`${day}.${month}.${year}`)
+}
+
 }

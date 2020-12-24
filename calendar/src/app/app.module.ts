@@ -8,6 +8,7 @@ import { BaseLayoutComponent } from './components/base-layout/base-layout.compon
 import { CalendarTableComponent } from './components/calendar-table/calendar-table.component';
 import { MonthSwitcherComponent } from './components/month-switcher/month-switcher.component';
 import { VacationService } from './services/vacation.service';
+import { UserService } from './services/user.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormModalComponent } from './components/calendar-table/form-modal/form-modal.component';
 import { MaterialModule } from './material/material.module';
@@ -29,7 +30,7 @@ import { HttpClientModule } from '@angular/common/http';
     MaterialModule,
     HttpClientModule
   ],
-  providers: [ VacationService ],
+  providers: [ VacationService, UserService ],
   bootstrap: [AppComponent],
   entryComponents: [
     FormModalComponent

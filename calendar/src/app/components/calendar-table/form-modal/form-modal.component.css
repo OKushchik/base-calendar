@@ -24,11 +24,15 @@
 }
 .formState {
     width: 100%;
-    margin-bottom: 75px;
+    margin-bottom: 40px;
 }
 .mat-form-field-flex {
 background-color: rgba(0,0,0,0) !important;
 }   
 .duration {
     float: right;
+}
+.formUsers {
+    width: 100%;
+    margin-bottom: 40px;
 }
