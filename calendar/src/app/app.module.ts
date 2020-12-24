@@ -12,6 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormModalComponent } from './components/calendar-table/form-modal/form-modal.component';
 import { MaterialModule } from './material/material.module';
 import { HttpClientModule } from '@angular/common/http';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { HttpClientModule } from '@angular/common/http';
     BaseLayoutComponent,
     CalendarTableComponent,
     MonthSwitcherComponent,
-    FormModalComponent
+    FormModalComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
