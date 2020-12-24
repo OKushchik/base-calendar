@@ -8,12 +8,9 @@ import { UserService } from "../../services/user.service";
 import { VacationService } from "../../services/vacation.service";
 import { MatDialog } from '@angular/material/dialog';
 import { FormModalComponent } from "../calendar-table/form-modal/form-modal.component";
-
 import { HttpClient } from '@angular/common/http';
-import { HttpHeaders } from '@angular/common/http';
 
-// import { observable, Observable, Observer } from 'rxjs';
-// import { ObserversModule } from "@angular/cdk/observers";
+
 
 @Component({
   selector: "app-calendar-table",
@@ -32,6 +29,7 @@ export class CalendarTableComponent implements OnInit {
   vacations: Vacation[];
   hideme: any = {};
   vacationType: boolean = true;
+  procentInFooter: Number;
 
   constructor(
     private _dateService: DateService,
@@ -42,6 +40,7 @@ export class CalendarTableComponent implements OnInit {
   ) {
     this.date = new Date();
     this.vacations = _vacationService.vacations
+    this.procentInFooter = 0;
     }
 
   ngOnInit() {
@@ -132,6 +131,15 @@ export class CalendarTableComponent implements OnInit {
       }
       this.teams[i].procent = Math.round(countDaysInVacation/(+this.daysInMonth*this.teams[i].participants.length)*100)
     }
+    this.getProcentInFooter () 
+  }
+
+  getProcentInFooter () {
+    let count = 0
+    for (let i = 0; i < this.teams.length; i++) {
+      count = count + Number(this.teams[i].procent)
+    }
+    this.procentInFooter = count / this.teams.length
   }
 
 
@@ -244,7 +252,6 @@ export class CalendarTableComponent implements OnInit {
         });
       });
     }
-    
     return sum;
   }
 
@@ -256,7 +263,6 @@ export class CalendarTableComponent implements OnInit {
   }
 
   deleteVacation(event){
-    console.log(event.target.closest('.vacation'))
     let test = confirm("Delete this vacation?")
     if(test){
     let _url = " http://localhost:3000/vacations"
