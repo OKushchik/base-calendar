@@ -1,45 +1,4 @@
-<!--<section class="calendar">-->
-<!--  <table class="calendar__table">-->
-<!--    <thead>-->
-<!--      <tr>-->
-<!--        <td-->
-<!--          get gey of daysEntity-->
-<!--        >-->
-<!--&lt;!&ndash;          some data of day &ndash;&gt;-->
-<!--        </td>-->
-<!--        <td>-->
-<!--          <span class="calendar__text">Sum</span>-->
-<!--        </td>-->
-<!--      </tr>-->
-<!--    </thead>-->
-
-<!--    <tbody check that teamEntity is exist>-->
-<!--    <tr get team of teamEntities>-->
-<!--      <div class="calendar__row-inner">-->
-<!--    <tr>-->
-<!--      <td-->
-<!--        get day of monthsDay entity-->
-<!--      ></td>-->
-<!--      <td>-->
-<!--        <span class="calendar__text calendar__text&#45;&#45;increased"></span>-->
-<!--      </td>-->
-<!--    </tr>-->
-<!--    <tr get participant of team participants>-->
-<!--      <td-->
-<!--        get day of month days-->
-<!--        use isDayOff-->
-<!--      ></td>-->
-<!--      <td>-->
-<!--        <span class="calendar__text calendar__text&#45;&#45;increased">0</span>-->
-<!--      </td>-->
-<!--    </tr>-->
-<!--    </div>-->
-<!--    </tr>-->
-<!--    </tbody>-->
-<!--  </table>-->
-<!--</section>-->
-
-<section *ngIf="!isLoading; else loading" class="calendar"> 
+<section *ngIf="!isLoading; else loading"  class="calendar">
   <table class="calendar__table">
     <thead>
       <tr>
@@ -95,9 +54,18 @@
               </div>
               <p>{{ departm.participants.length }}</p>
             </div>
-            <p class="team__percent">0%</p>
-            <div (click)="hideme[departm.realm] = !hideme[departm.realm]" class="team__close">
-              <svg width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <p class="team__percent">{{ departm.procent}}%</p>
+            <div
+              (click)="hideme[departm.realm] = !hideme[departm.realm]"
+              class="team__close"
+            >
+              <svg
+                width="12"
+                height="7"
+                viewBox="0 0 12 7"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
                 <path d="M11 6.00012L6 1.00012L1 6.00012" stroke="black" />
               </svg>
             </div>
@@ -111,7 +79,10 @@
           <td class="team__user-name">{{ user.name }}</td>
           <td *ngFor="let day of arrOfDays" [class]="day.isWeekend ? 'weekendDay day' : 'day'">
             <div *ngFor="let vocation of user.vacation">
-              <div *ngIf="day.num === vocation.start" class="vacation" [ngClass]="vocation.type" [ngStyle]="{
+              <div
+                *ngIf="day.num === vocation.start" [attr.data-id]="vocation.idVacation" (click) = "deleteVacation($event)"
+                class="vacation" [ngClass]="vocation.type" [ngStyle]="{
+
                   width: 'calc(34*' + vocation.duration + 'px)',
                   height: '30px'
                 }">
@@ -137,6 +108,9 @@
     </tbody>
   </table>
 </section>
+
 <ng-template #loading>
   <div class="loader">loading....</div>
 </ng-template>
+
+

@@ -171,6 +171,9 @@ tbody::after {
 
 
 }
+.vacation:hover {
+  cursor: pointer;
+}
 
 .FRONT_END .vacation {
   background-color: #9B99FF;
