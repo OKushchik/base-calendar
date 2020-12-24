@@ -1,16 +1,16 @@
 <h2 mat-dialog-title>Vacation Request<span class="duration">{{result}} {{dateCountTitle}}</span></h2>
 
-<form class="example-form">
+<form action="" class="form form-test" [formGroup]="form" class="example-form" (ngSubmit)="submit()">
   <div class="formDate">
-    <mat-form-field class="picker1" appearance="fill">
+    <mat-form-field class="picker1" appearance="fill" >
         <mat-label>From</mat-label>
-        <input matInput [matDatepicker]="picker1" (ngModelChange)="valuechange1($event)"[min]="minDate" [formControl]="date">
+        <input matInput [matDatepicker]="picker1"  (ngModelChange)="valuechange1($event)"[min]="minDate"  formControlName="picker1" required>
         <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
         <mat-datepicker #picker1></mat-datepicker>
     </mat-form-field>
     <mat-form-field class="picker2" appearance="fill">
         <mat-label>To</mat-label>
-        <input matInput [matDatepicker]="picker2" (ngModelChange)="valuechange2($event)" [min]="minDate" [formControl]="date">
+        <input matInput [matDatepicker]="picker2" (ngModelChange)="valuechange2($event)" [min]="minDate" formControlName="picker2" required>
         <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
         <mat-datepicker #picker2></mat-datepicker>
     </mat-form-field>    
@@ -19,15 +19,30 @@
   <br>
 
   <mat-form-field class="formState" appearance="fill">
-    <mat-select class="state" [formControl]="panelStates">
-      <mat-option *ngFor="let state of states" [value]="state">{{state}}</mat-option>
+    <mat-label>Choose Type</mat-label>
+    <mat-select class="state" formControlName="panelStates" required>
+      <mat-option *ngFor="let state of states" [value]="state" >{{state}}</mat-option>
     </mat-select>
+    <mat-error *ngIf="panelStates.hasError('required')">Please choose a type</mat-error>
   </mat-form-field>
+
+
+  <mat-form-field class="formUsers" appearance="fill">
+    <mat-label>Choose User</mat-label>
+    <mat-select formControlName="user" required>
+      <mat-option>--</mat-option>
+      <mat-option *ngFor="let user of this.users" [value]="user">
+        {{user.name}}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="user.hasError('required')">Please choose a user</mat-error>
+  </mat-form-field>
+
 
   <section>
     <div class="example-button-row">
       <button class="btn__cancel" mat-stroked-button mat-dialog-close>Cancel</button>
-      <button class="btn__send" mat-stroked-button [mat-dialog-close]="true" style="background-color: green; color: white;">Send</button>
+      <button type="submit" class="btn__send" mat-stroked-button [disabled]="form.invalid" mat-dialog-close style="background-color: green; color: white;">Send</button>
     </div>
   </section>
 </form>

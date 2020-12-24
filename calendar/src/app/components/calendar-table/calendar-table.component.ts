@@ -1,5 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import { send } from "process";
 import { Day } from "src/app/models/day";
 import { Team } from "src/app/models/team";
 import { User, UserRealm } from "src/app/models/user";
@@ -10,18 +9,24 @@ import { VacationService } from "../../services/vacation.service";
 import { MatDialog } from '@angular/material/dialog';
 import { FormModalComponent } from "../calendar-table/form-modal/form-modal.component";
 
+import { HttpClient } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
+
+// import { observable, Observable, Observer } from 'rxjs';
+// import { ObserversModule } from "@angular/cdk/observers";
+
 @Component({
   selector: "app-calendar-table",
   templateUrl: "./calendar-table.component.html",
   styleUrls: ["./calendar-table.component.css"],
 })
 export class CalendarTableComponent implements OnInit {
-  // private teams: { [key in UserRealm]?: Team } = {};
   private teams: Array<Team>;
   date: Date;
   daysInMonth: Number;
   arrOfDays: Array<Day>;
   arr: Array<any>
+  obs:any
 
   isLoading: boolean
 
@@ -34,7 +39,8 @@ export class CalendarTableComponent implements OnInit {
     private _dateService: DateService,
     private _userService: UserService,
     private _vacationService: VacationService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private http: HttpClient
   ) {
     this.date = new Date();
     this.vacations = _vacationService.vacations
@@ -45,7 +51,6 @@ export class CalendarTableComponent implements OnInit {
     this.getArrOfDays();
     this.isLoading = true;
 
-  
 
     this._dateService.switchMonth().subscribe((val) => {
       
@@ -59,7 +64,6 @@ export class CalendarTableComponent implements OnInit {
 
     this._userService.getUsers().subscribe((val) => {
       this.users = val;
-      
       this.getTeams();
       this.checkVacation()
       this.addVacationToUser();
@@ -71,25 +75,6 @@ export class CalendarTableComponent implements OnInit {
       this.checkVacation();
       this.addVacationToUser()
     });
-
-
-
-
-    // you need to get users
-    // then construct your team by getting users, such as
-
-    // this.teams[user.realm] = {
-    //   realm: user.realm,
-    //   participants: []
-    // };
-
-    // and then add users to teams, such as
-    /*
-    * if (user.realm in this.teams) {
-        this.teams[user.realm].participants.push(user);
-      }
-    * */
-    // for now you should be have a teams
   }
 
   getDaysInMonth() {
@@ -126,33 +111,18 @@ export class CalendarTableComponent implements OnInit {
     this.teams = [];
     for (let key in UserRealm) {
       this.teams.push({
-        // realm: UserRealm[String(key)],
         realm: <UserRealm>key,
         participants: [],
       });
     }
     for (let key in this.teams){
       for (let keyuser in this.users){
-        // if (this.teams[key].realm == this.users[keyuser].realm){
         if (UserRealm[this.teams[key].realm] == this.users[keyuser].realm){
           this.teams[key].participants.push(this.users[keyuser]);
         }
       }
     }
   }
-  // getVacation() {
-  //   let currentMonth = {
-  //     start: new Date(this.date.getFullYear(), this.date.getMonth(), 1).getTime(),
-  //     end: new Date(this.date.getFullYear(), this.date.getMonth()+1, 1).getTime()-1,
-
-  //   }
-  //   let currentVacation = {
-  //     start: this.convertedDate(this.vacation.start).getTime(),
-  //     end: this.convertedDate(this.vacation.end).getTime()-1
-  //   }
-  //   console.log(currentMonth)
-  //   console.log(currentVacation)
-  // }
 
   convertedDate(day){
     return new Date(day.split(".").reverse().join("-"))
@@ -169,6 +139,7 @@ export class CalendarTableComponent implements OnInit {
          this.convertedDate(this.vacations[i].endDate).getTime() < currentMonth.end){
       let obj = {
         id: this.vacations[i].userId,
+        idVacation: this.vacations[i].id,
         start: this.convertedDate(this.vacations[i].startDate).getDate(),
         end: this.convertedDate(this.vacations[i].endDate).getDate(),
         duration: this.convertedDate(this.vacations[i].endDate).getDate() - this.convertedDate(this.vacations[i].startDate).getDate() + 1,
@@ -181,6 +152,7 @@ export class CalendarTableComponent implements OnInit {
          this.convertedDate(this.vacations[i].startDate).getTime() < currentMonth.end){
           let obj = {
             id: this.vacations[i].userId,
+            idVacation: this.vacations[i].id,
             start: this.convertedDate(this.vacations[i].startDate).getDate(),
             end: this.daysInMonth,
             duration: +this.daysInMonth - this.convertedDate(this.vacations[i].startDate).getDate() + 1,
@@ -193,6 +165,7 @@ export class CalendarTableComponent implements OnInit {
         this.convertedDate(this.vacations[i].endDate).getTime() > currentMonth.start){
         let obj = {
           id: this.vacations[i].userId,
+          idVacation: this.vacations[i].id,
           start: 1,
           end: this.convertedDate(this.vacations[i].endDate).getDate(),
           duration: this.convertedDate(this.vacations[i].endDate).getDate(),
@@ -204,6 +177,7 @@ export class CalendarTableComponent implements OnInit {
       this.convertedDate(this.vacations[i].endDate).getTime() > currentMonth.end){
       let obj = {
         id: this.vacations[i].userId,
+        idVacation: this.vacations[i].id,
         start: 1,
         end: this.daysInMonth,
         duration: this.daysInMonth,
@@ -214,22 +188,23 @@ export class CalendarTableComponent implements OnInit {
 
     }
 
-
   }
   addVacationToUser (){
+    this.obs = []
     if (this.users){
-          for(let i=0; i<this.users.length; i++){
+    for(let i=0; i<this.users.length; i++){
       this.users[i].vacation = []
       for(let j=0; j<this.arr.length; j++) {
         if(this.users[i].id === this.arr[j].id){
             this.users[i].vacation.push(this.arr[j])
+ 
         }
       }
+        
     }
     }
-
+ 
   }
-
 
   countSum(vacations:any){
     let sum : number = 0;
@@ -246,8 +221,6 @@ export class CalendarTableComponent implements OnInit {
 
     return sum;
   }
-
-
 
   countStats(day:Day){
     let sum :number= 0;
@@ -267,16 +240,6 @@ export class CalendarTableComponent implements OnInit {
     return sum;
   }
 
-
-
-  // get teamsEntity(): Team[] {}
-
-  // monthDaysEntity(): Day[] {}
-
-  // generateMonth(date: Date): Month {} // should to get month
-
-  // you can create the structure yourself too
-
   openDialog() {
     const dialogRef = this.dialog.open(FormModalComponent);
 
@@ -284,5 +247,21 @@ export class CalendarTableComponent implements OnInit {
       console.log(`Dialog result: ${result}`);
     });
   }
+
+  chooseV(event){
+    console.log(event.target.closest('.vacation'))
+    let test = confirm("Delete this vacation?")
+    if(test){
+    let _url = " http://localhost:3000/vacations"
+    let endPoints = `/${event.target.closest('.vacation').getAttribute('data-id')}`
+    this.http.delete(_url + endPoints).subscribe(data => {
+      console.log(data);
+    });
+    document.location.reload();
+    }
+
+  }
+
+
 }
 

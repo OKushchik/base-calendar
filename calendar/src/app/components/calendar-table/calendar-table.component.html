@@ -147,7 +147,7 @@
           >
             <div *ngFor="let vocation of user.vacation">
               <div
-                *ngIf="day.num === vocation.start"
+                *ngIf="day.num === vocation.start" [attr.data-id]="vocation.idVacation" (click) = "chooseV($event)"
                 class="vacation" [ngClass]="vocation.type" [ngStyle]="{
                   width: 'calc(34*' + vocation.duration + 'px)',
                   height: '30px'
