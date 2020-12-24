@@ -261,7 +261,6 @@ export class CalendarTableComponent implements OnInit {
       console.log(`Dialog result: ${result}`);
     });
   }
-
   deleteVacation(event){
     let test = confirm("Delete this vacation?")
     if(test){
@@ -274,4 +273,5 @@ export class CalendarTableComponent implements OnInit {
     }
   }
 }
+
 
