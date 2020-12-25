@@ -398,4 +398,20 @@ tbody::after {
   color: #000;
 }
 
+.calendar{
+  padding-left: 15px;
+  padding-right: 15px;
+  overflow-x: scroll;
+  scrollbar-color: #b6b6b6 #dddddd;     /* «цвет ползунка» «цвет полосы скроллбара» */
+  scrollbar-width: thin;
+}
 
+.calendar::-webkit-scrollbar {
+  height: 8px; /* высота для горизонтального скролла */
+  background-color: #ffffff;
+}
+
+.calendar::-webkit-scrollbar-thumb {
+  background-color: #a7a7a7;
+  border-radius: 5px;
+}
