@@ -1,0 +1,38 @@
+.example-button-row {
+    display: flex;
+    justify-content: space-between;
+}
+.btn__cancel, .btn__send {
+    display: block;
+    width: 45%;
+}
+.formDate {
+    display: flex;
+    justify-content: space-between;
+}
+.picker1 {
+    display: block;
+    width: 49%;
+    background-color: white;
+    opacity: 1;
+}
+.picker2 {
+    width: 49%;
+    display: block;
+    background-color: white;
+    opacity: 1;
+}
+.formState {
+    width: 100%;
+    margin-bottom: 40px;
+}
+.mat-form-field-flex {
+background-color: rgba(0,0,0,0) !important;
+}   
+.duration {
+    float: right;
+}
+.formUsers {
+    width: 100%;
+    margin-bottom: 40px;
+}

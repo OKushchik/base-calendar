@@ -7,6 +7,13 @@ import { ActionBarComponent } from './components/action-bar/action-bar.component
 import { BaseLayoutComponent } from './components/base-layout/base-layout.component';
 import { CalendarTableComponent } from './components/calendar-table/calendar-table.component';
 import { MonthSwitcherComponent } from './components/month-switcher/month-switcher.component';
+import { VacationService } from './services/vacation.service';
+import { UserService } from './services/user.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormModalComponent } from './components/calendar-table/form-modal/form-modal.component';
+import { MaterialModule } from './material/material.module';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -14,13 +21,21 @@ import { MonthSwitcherComponent } from './components/month-switcher/month-switch
     ActionBarComponent,
     BaseLayoutComponent,
     CalendarTableComponent,
-    MonthSwitcherComponent
+    MonthSwitcherComponent,
+    FormModalComponent,
+
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MaterialModule,
+    HttpClientModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [ VacationService, UserService ],
+  bootstrap: [AppComponent],
+  entryComponents: [
+    FormModalComponent
+  ],
 })
 export class AppModule { }

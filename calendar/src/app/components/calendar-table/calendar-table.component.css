@@ -1,0 +1,417 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+.calendar__table {
+  margin: 0 auto;
+}
+.weekendDay {
+  background-color: #f0f0f0;
+}
+
+td {
+  border: 1px solid #d7d7d7;
+  text-align: center;
+  min-width: 34px;
+  height: 34px;
+  box-sizing: border-box;
+}
+
+thead .day {
+  height: 64px;
+  font-size: 12px;
+}
+
+.day {
+  font-size: 12px;
+  line-height: 1.4;
+  position: relative;
+}
+
+thead .day span:last-child {
+  font-weight: 600;
+  display: block;
+  padding-top: 5px;
+}
+
+table .team:first-of-type .team__firstRow {
+  background: rgba(155, 153, 255, 0.1);
+}
+
+table .team:nth-of-type(2) .team__firstRow {
+  background: rgba(122, 175, 255, 0.1);
+}
+
+table .team:nth-of-type(3) .team__firstRow {
+  background: rgba(255, 153, 153, 0.1);
+}
+
+table .team:nth-of-type(4) .team__firstRow {
+  background: rgba(255, 167, 104, 0.1);
+}
+
+table {
+  border-collapse: collapse;
+}
+
+.team__title-wrap {
+  display: grid;
+  grid-template-columns: 3fr 30px 30px 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  grid-column-gap: 10px;
+}
+
+.FRONT_END tr {
+  border-left: 3px solid #9b99ff;
+}
+
+.BACK_END tr {
+  border-left: 3px solid #7aafff;
+}
+
+.DESIGNER tr {
+  border-left: 3px solid #ff9999;
+}
+tbody::after {
+  height: 34px;
+  display: block;
+  content: " ";
+}
+
+.team__title {
+  width: 260px;
+  text-align: left;
+  font-size: 12px;
+}
+
+.team__name {
+  font-weight: 600;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+}
+
+.team__amount {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #949494;
+}
+
+.team__amount-icon {
+  margin-right: 3px;
+  display: flex;
+  align-items: center;
+  height: 12px;
+  width: 12px;
+  margin-bottom: 2px;
+}
+
+.team__amount-icon svg {
+  height: 100%;
+  width: 100%;
+}
+
+.team__percent {
+  padding-top: 2px;
+  padding-bottom: 2px;
+  text-align: center;
+  color: white;
+  border-radius: 2px;
+}
+
+.FRONT_END .team__percent {
+  background-color: #9b99ff;
+}
+
+.BACK_END .team__percent {
+  background-color: #7aafff;
+}
+
+.DESIGNER .team__percent {
+  background-color: #ff9999;
+}
+
+.team__close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.team__close--rotated svg {
+  transform: rotate(180deg);
+}
+
+.team__close svg {
+  height: 7px;
+  width: 12px;
+  transition: 200ms ease-in-out;
+  transform-origin: center center;
+}
+
+.team__user-name {
+  padding-left: 20px;
+  padding-right: 20px;
+  text-align: left;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.vacation {
+  position: absolute;
+  top: 50%;
+  transform: translateY(calc(-50% - 0.5px));
+  left: 2px;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  border-radius: 3px;
+  color: #fff;
+  margin-bottom: 2px;
+}
+.vacation:hover {
+  cursor: pointer;
+}
+
+.FRONT_END .vacation {
+  background-color: #9b99ff;
+  border: 1px solid #9b99ff;
+}
+
+.BACK_END .vacation {
+  background-color: #7aafff;
+  border: 1px solid #7aafff;
+}
+
+.DESIGNER .vacation {
+  background-color: #ff9999;
+  border: 1px solid #ff9999;
+}
+
+.FRONT_END .UnPd {
+  color: #9b99ff;
+  background: rgba(155, 153, 255, 0.1);
+}
+
+.BACK_END .UnPd {
+  color: #7aafff;
+  background: rgba(122, 175, 255, 0.1);
+}
+
+.DESIGNER .UnPd {
+  color: #ff9999;
+  background: rgba(255, 153, 153, 0.1);
+}
+
+.btnAdd {
+  border: none;
+  padding-top: 0;
+}
+
+/* Add vacation button */
+
+.add-vacation_btn {
+  width: 144px;
+  height: 40px;
+  border-radius: 7px;
+  background-color: #48ba46;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.5;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 20px;
+  transition: all linear 0.2s;
+  border: none;
+  margin-right: 122px;
+  cursor: pointer;
+  color: #fff;
+  margin-top: -24px;
+}
+
+.add-vacation_btn::before,
+.add-vacation_btn::after {
+  content: "";
+  display: block;
+  width: 13px;
+  height: 1px;
+  background: #fff;
+  position: absolute;
+  top: 50%;
+  left: 16px;
+}
+
+.add-vacation_btn::before {
+  transform: rotate(90deg);
+}
+
+.add-vacation:hover {
+  background-color: #59df57;
+}
+
+.add-vacation_btn:focus {
+  border: none;
+  outline: none;
+}
+
+.day-person-stats td {
+  background-color: #f3f3f3;
+  border-top: 0px;
+  border-bottom: 0px;
+}
+
+.day-person-stats .weekendDay-stats {
+  background-color: #f0f0f0;
+}
+
+.day-person-title {
+  text-align: left;
+  font-weight: 600;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-size: 12px;
+}
+.loader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader-block {
+  height: 400px;
+  width: 400px;
+  background-color: white;
+  box-shadow: 0px 4px 15px 5px rgba(0, 0, 0, 0.28);
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.loader-plus {
+  font-size: 180px;
+  line-height: 180px;
+  padding-top: 3px;
+  font-weight: 400;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  animation: 600ms ease-in-out infinite animate-loader;
+  transform-origin: center center;
+  color: #797979;
+}
+
+.loader-text {
+  font-size: 22px;
+  color: #797979;
+}
+
+.sum {
+  font-size: 12px;
+  background-color: #f3f3f3;
+}
+
+@keyframes animate-loader {
+  0% {
+    transform: rotate(0deg);
+  }
+  80% {
+    transform: rotate(90deg);
+  }
+  100% {
+    transform: rotate(90deg);
+  }
+}
+
+.footer {
+  padding-bottom: 97px;
+  font-size: 14px;
+}
+
+.footer__title {
+  font-weight: 600;
+  position: relative;
+}
+
+.footer__title::after {
+  content: "";
+  display: block;
+  height: 1px;
+  width: 100%;
+  background-color: #e2e2e2;
+  position: absolute;
+  top: 120%;
+  left: 0;
+}
+
+.footer__stat {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+  padding-right: 30px;
+  align-items: center;
+}
+
+.statistic {
+  display: flex;
+}
+
+.footer__amount {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #949494;
+}
+
+.footer__percent {
+  padding: 3px 3px;
+  background-color: #48ba46;
+  text-align: center;
+  color: white;
+  border-radius: 2px;
+  margin-left: 15px;
+  min-width: 39px;
+}
+.footer__icon {
+  margin-right: 3px;
+  display: flex;
+  align-items: center;
+  height: 12px;
+  width: 12px;
+  margin-bottom: 2px;
+}
+.users-amount {
+  color: #000;
+}
+
+.calendar{
+  padding-left: 15px;
+  padding-right: 15px;
+  overflow-x: scroll;
+  scrollbar-color: #b6b6b6 #dddddd;     /* «цвет ползунка» «цвет полосы скроллбара» */
+  scrollbar-width: thin;
+}
+
+.calendar::-webkit-scrollbar {
+  height: 8px; /* высота для горизонтального скролла */
+  background-color: #ffffff;
+}
+
+.calendar::-webkit-scrollbar-thumb {
+  background-color: #a7a7a7;
+  border-radius: 5px;
+}

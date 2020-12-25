@@ -1,7 +1,19 @@
+import { Injectable } from '@angular/core';
+import { User, UserRealm } from 'src/app/models/user';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+
+@Injectable({
+  providedIn: 'root'
+})
 export class UserService {
-  // private users: Users[] = [ ...mock data ]
 
-  // getUsers(): Observable<User[]> {}
+  constructor(private http: HttpClient) {
+  }
 
-  // getUserById(): Observable<User>
+  private _url: string = " http://localhost:3000/users"
+
+  getUsers():Observable<User[]> {
+    return this.http.get<User[]>(this._url)
+  }
 }
