@@ -140,9 +140,9 @@ export class CalendarTableComponent implements OnInit {
     for (let i = 0; i < this.teams.length; i++) {
       count = count + Number(this.teams[i].procent)
     }
-    this.procentInFooter = count / this.teams.length
+    this.procentInFooter = Math.round(count / this.teams.length)
 
-    this._userService.procentOfUsers = this.procentInFooter
+    // this._userService.procentOfUsers = this.procentInFooter
   }
 
 

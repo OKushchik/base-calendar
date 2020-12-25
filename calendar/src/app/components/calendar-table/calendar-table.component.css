@@ -4,18 +4,19 @@
   box-sizing: border-box;
 }
 
-
+.calendar__table {
+  margin: 0 auto;
+}
 .weekendDay {
-  background-color: #F0F0F0;
+  background-color: #f0f0f0;
 }
 
 td {
-  border: 1px solid #D7D7D7;
+  border: 1px solid #d7d7d7;
   text-align: center;
   width: 34px;
   height: 34px;
   box-sizing: border-box;
-
 }
 
 thead .day {
@@ -34,8 +35,6 @@ thead .day span:last-child {
   display: block;
   padding-top: 5px;
 }
-
-
 
 table .team:first-of-type .team__firstRow {
   background: rgba(155, 153, 255, 0.1);
@@ -66,15 +65,15 @@ table {
 }
 
 .FRONT_END tr {
-  border-left: 3px solid #9B99FF;
+  border-left: 3px solid #9b99ff;
 }
 
-.BACK_END tr{
-  border-left: 3px solid #7AAFFF;
+.BACK_END tr {
+  border-left: 3px solid #7aafff;
 }
 
-.DESIGNER  tr{
-  border-left: 3px solid  #FF9999;
+.DESIGNER tr {
+  border-left: 3px solid #ff9999;
 }
 tbody::after {
   height: 34px;
@@ -102,7 +101,6 @@ tbody::after {
   color: #949494;
 }
 
-
 .team__amount-icon {
   margin-right: 3px;
   display: flex;
@@ -126,15 +124,15 @@ tbody::after {
 }
 
 .FRONT_END .team__percent {
-    background-color: #9B99FF;
+  background-color: #9b99ff;
 }
 
 .BACK_END .team__percent {
-    background-color: #7AAFFF;
+  background-color: #7aafff;
 }
 
 .DESIGNER .team__percent {
-    background-color: #FF9999;
+  background-color: #ff9999;
 }
 
 .team__close {
@@ -144,7 +142,7 @@ tbody::after {
   cursor: pointer;
 }
 
-.team__close--rotated svg{
+.team__close--rotated svg {
   transform: rotate(180deg);
 }
 
@@ -176,50 +174,45 @@ tbody::after {
   border-radius: 3px;
   color: #fff;
   margin-bottom: 2px;
-
 }
 .vacation:hover {
   cursor: pointer;
 }
 
 .FRONT_END .vacation {
-  background-color: #9B99FF;
-  border: 1px solid #9B99FF;
+  background-color: #9b99ff;
+  border: 1px solid #9b99ff;
 }
 
 .BACK_END .vacation {
-  background-color: #7AAFFF;
-  border: 1px solid #7AAFFF;
+  background-color: #7aafff;
+  border: 1px solid #7aafff;
 }
 
 .DESIGNER .vacation {
-  background-color: #FF9999;
-  border: 1px solid #FF9999;
+  background-color: #ff9999;
+  border: 1px solid #ff9999;
 }
 
 .FRONT_END .UnPd {
-  color: #9B99FF;
+  color: #9b99ff;
   background: rgba(155, 153, 255, 0.1);
-
 }
 
 .BACK_END .UnPd {
-  color: #7AAFFF;
-  background:rgba(122, 175, 255, 0.1);
-
+  color: #7aafff;
+  background: rgba(122, 175, 255, 0.1);
 }
 
 .DESIGNER .UnPd {
-  color: #FF9999;
+  color: #ff9999;
   background: rgba(255, 153, 153, 0.1);
-
 }
 
 .btnAdd {
   border: none;
   padding-top: 0;
 }
-
 
 /* Add vacation button */
 
@@ -242,7 +235,6 @@ tbody::after {
   cursor: pointer;
   color: #fff;
   margin-top: -24px;
-
 }
 
 .add-vacation_btn::before,
@@ -270,17 +262,17 @@ tbody::after {
   outline: none;
 }
 
-.day-person-stats td{
-  background-color: #F3F3F3;
+.day-person-stats td {
+  background-color: #f3f3f3;
   border-top: 0px;
   border-bottom: 0px;
 }
 
-.day-person-stats .weekendDay-stats{
-  background-color: #F0F0F0;
+.day-person-stats .weekendDay-stats {
+  background-color: #f0f0f0;
 }
 
-.day-person-title{
+.day-person-title {
   text-align: left;
   font-weight: 600;
   padding-left: 20px;
@@ -288,22 +280,22 @@ tbody::after {
   font-size: 12px;
 }
 .loader {
-    position: absolute;
-    top:0;
-    left: 0;
-    height: 100vh;
-    width: 100vw;
-    background-color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.loader-block{
+.loader-block {
   height: 400px;
   width: 400px;
   background-color: white;
-  box-shadow: 0px 4px 15px 5px rgba(0,0,0,0.28);
+  box-shadow: 0px 4px 15px 5px rgba(0, 0, 0, 0.28);
   border-radius: 5px;
   display: flex;
   justify-content: center;
@@ -311,7 +303,7 @@ tbody::after {
   flex-direction: column;
 }
 
-.loader-plus{
+.loader-plus {
   font-size: 180px;
   line-height: 180px;
   padding-top: 3px;
@@ -323,24 +315,85 @@ tbody::after {
   color: #797979;
 }
 
-.loader-text{
+.loader-text {
   font-size: 22px;
   color: #797979;
 }
 
-.sum{
+.sum {
   font-size: 12px;
-  background-color: #F3F3F3;
+  background-color: #f3f3f3;
 }
 
-@keyframes animate-loader{
-  0%{
+@keyframes animate-loader {
+  0% {
     transform: rotate(0deg);
   }
-  80%{
+  80% {
     transform: rotate(90deg);
   }
-  100%{
+  100% {
     transform: rotate(90deg);
   }
+}
+
+.footer {
+  padding-bottom: 97px;
+  font-size: 14px;
+}
+
+.footer__title {
+  font-weight: 600;
+  position: relative;
+}
+
+.footer__title::after {
+  content: "";
+  display: block;
+  height: 1px;
+  width: 100%;
+  background-color: #e2e2e2;
+  position: absolute;
+  top: 120%;
+  left: 0;
+}
+
+.footer__stat {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+  padding-right: 30px;
+  align-items: center;
+}
+
+.statistic {
+  display: flex;
+}
+
+.footer__amount {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #949494;
+}
+
+.footer__percent {
+  padding: 3px 3px;
+  background-color: #48ba46;
+  text-align: center;
+  color: white;
+  border-radius: 2px;
+  margin-left: 15px;
+  min-width: 39px;
+}
+.footer__icon {
+  margin-right: 3px;
+  display: flex;
+  align-items: center;
+  height: 12px;
+  width: 12px;
+  margin-bottom: 2px;
+}
+.users-amount {
+  color: #000;
 }

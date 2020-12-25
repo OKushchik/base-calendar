@@ -8,10 +8,9 @@ import { HttpClient } from '@angular/common/http';
 })
 export class UserService {
 
-procentOfUsers:Number
 
   constructor(private http: HttpClient) {
-    this.procentOfUsers = 0;
+
    }
 
   private _url: string = " http://localhost:3000/users"
