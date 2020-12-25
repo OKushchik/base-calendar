@@ -6,14 +6,10 @@ import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/
 
 import { UserService } from "../../../services/user.service";
 import { User } from "src/app/models/user";
-
 import { HttpClient, HttpHeaders  } from '@angular/common/http';
-
 
 import * as _moment from 'moment';
 import 'moment/locale/pt-br';
-
-// import {default as _rollupMoment} from 'moment';
 
 const moment =  _moment;
 
@@ -55,23 +51,22 @@ export class FormModalComponent implements OnInit {
   users:User[];
   form: FormGroup
   selectedValue: string;
-  isValid:boolean
-
+  isValid:boolean;
   states: string[] = [
   'Pd', 'UnPd'
 ];
 private _url: string = " http://localhost:3000/vacations"
 
-constructor(private _userService: UserService,
-  private http: HttpClient){
-  
+constructor(
+  private _userService: UserService,
+  private http: HttpClient
+  ){
   this.result = 0;
   this.dateCountTitle = "Day"
   this.dateFirst = new Date().setHours(0, 0, 0, 0)
   this.dateSecond = new Date().setHours(0, 0, 0, 0)
   this.users = []
   this.isValid = false
-
 }
 
 ngOnInit() {
@@ -87,9 +82,7 @@ ngOnInit() {
   });
 }
 
- minDate = new Date();
-
-
+minDate = new Date();
 
 valuechange1 (event){
   this.dateFirst = event._d.getTime()
@@ -109,7 +102,6 @@ durationVocation(){
     this.dateCountTitle = "Invalid date"
     this.result = "";
   }
-
 }
 
 user = new FormControl('', Validators.required);
@@ -117,7 +109,6 @@ picker1 = new FormControl('', Validators.required);
 picker2 = new FormControl('', Validators.required);
 date = new FormControl(moment(), Validators.required);
 panelStates = new FormControl('', Validators.required);
-
 
 submit() {
   let formData = this.form.value;
@@ -129,7 +120,7 @@ submit() {
     userId: formData.user.id,
     type: formData.panelStates
     }
-    console.log(userObj)
+
     const headers = new HttpHeaders()
     .set('Authorization', 'my-auth-token')
     .set('Content-Type', 'application/json');
@@ -139,10 +130,10 @@ submit() {
     })
     .subscribe(data => {
       console.log(data);
+      document.location.reload();
     });
-    document.location.reload();
+    
 }
-
 
 convertDate (date){
   let month:Number | String = new Date(date).getMonth()+1

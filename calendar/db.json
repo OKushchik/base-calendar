@@ -135,6 +135,48 @@
       "endDate": "30.12.2020",
       "userId": 6,
       "type": "UnPd"
+    },
+    {
+      "id": 1608891333991,
+      "startDate": "29.12.2020",
+      "endDate": "30.12.2020",
+      "userId": 4,
+      "type": "Pd"
+    },
+    {
+      "id": 1608891848384,
+      "startDate": "26.12.2020",
+      "endDate": "31.12.2020",
+      "userId": 6,
+      "type": "Pd"
+    },
+    {
+      "id": 1608892250874,
+      "startDate": "12.01.2021",
+      "endDate": "19.01.2021",
+      "userId": 6,
+      "type": "UnPd"
+    },
+    {
+      "id": 1608892293253,
+      "startDate": "04.01.2021",
+      "endDate": "07.01.2021",
+      "userId": 1,
+      "type": "Pd"
+    },
+    {
+      "id": 1608892522720,
+      "startDate": "01.02.2021",
+      "endDate": "12.01.2021",
+      "userId": 4,
+      "type": "Pd"
+    },
+    {
+      "id": 1608892790911,
+      "startDate": "11.01.2021",
+      "endDate": "15.01.2021",
+      "userId": 2,
+      "type": "UnPd"
     }
   ]
 }

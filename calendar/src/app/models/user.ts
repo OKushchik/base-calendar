@@ -7,8 +7,6 @@ export enum UserRealm {
 export interface User {
   id: number;
   name: string;
-  // email: string;
-  // role: string;
   realm: UserRealm;
   vacation: any;
 }
