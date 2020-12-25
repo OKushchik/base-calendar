@@ -1,8 +1,3 @@
-// export class DateService {
-//   // date: some Subject (or BehaviourSubject<Date>)
-
-//   // switchMonth(direction) {}
-// }
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 
@@ -18,12 +13,11 @@ export class DateService {
   constructor() {
     this.date = new Date;
     this.subject = new Subject();
-   }
+  }
 
-   switchMonth(direction:any = 0) { 
+  switchMonth(direction:any = 0) { 
     this.date = new Date(this.date.getFullYear(), this.date.getMonth() + direction, 1);
     this.subject.next(this.date)
     return this.subject
-   }
-
+  }
 }

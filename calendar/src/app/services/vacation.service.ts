@@ -10,13 +10,14 @@ import { HttpClient } from '@angular/common/http';
 
 export class VacationService {
   vacations:[]
+  
   constructor(private http: HttpClient) {
     this.vacations = [];
-   }
+  }
 
   private _url: string = " http://localhost:3000/vacations"
+  
   getVacations():Observable<Vacation[]> {
     return this.http.get<Vacation[]>(this._url)
   }
-
 }

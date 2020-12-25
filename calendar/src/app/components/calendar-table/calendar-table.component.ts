@@ -72,6 +72,7 @@ export class CalendarTableComponent implements OnInit {
       this.addVacationToUser()
     });
   }
+
   getDaysInMonth() {
     this.daysInMonth = new Date(
       this.date.getFullYear(),
@@ -118,11 +119,9 @@ export class CalendarTableComponent implements OnInit {
         }
       }
     }
-
   }
 
   procentVacationInTeam(){
-    console.log(this.teams)
     for (let i = 0; i < this.teams.length; i++) {
        let countDaysInVacation = 0
       for (let j = 0; j < this.teams[i].participants.length; j++) {
@@ -141,10 +140,7 @@ export class CalendarTableComponent implements OnInit {
       count = count + Number(this.teams[i].procent)
     }
     this.procentInFooter = Math.round(count / this.teams.length)
-
-    // this._userService.procentOfUsers = this.procentInFooter
   }
-
 
   convertedDate(day){
     return new Date(day.split(".").reverse().join("-"))
@@ -207,7 +203,6 @@ export class CalendarTableComponent implements OnInit {
       }
       this.arr.push(obj)
     }
-
     }
   }
   
@@ -237,7 +232,6 @@ export class CalendarTableComponent implements OnInit {
         });
       });
     }
-
     return sum;
   }
 
@@ -271,8 +265,8 @@ export class CalendarTableComponent implements OnInit {
     let endPoints = `/${event.target.closest('.vacation').getAttribute('data-id')}`
     this.http.delete(_url + endPoints).subscribe(data => {
       console.log(data);
+      document.location.reload();
     });
-    document.location.reload();
     }
   }
 }

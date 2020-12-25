@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { FormModalComponent } from './form-modal.component';
 
 describe('FormModalComponent', () => {
