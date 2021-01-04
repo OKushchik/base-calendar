@@ -8,7 +8,8 @@
     font-size: 14px;
     font-weight: 600;
     width: 180px;
-    text-align: center;
+    text-align: end;
+    border: none;
 }
 .month-switcher__btn {
     background-color: transparent;

@@ -2,7 +2,10 @@
     <button class="month-switcher__btn" (click)="switchMonth(-1)">
       <i class="icon icon-Arrow-2"></i>
    </button>
-    <span class="month-switcher__month">{{date | date:'MMMM yyyy'}}</span>
+    <!-- <span class="month-switcher__month">{{date | date:'MMMM yyyy'}}</span> -->
+
+      <input class="month-switcher__month" type="month" value={{value}} (change)="switchMonthInput($event.target.value)" >
+
     <button class="month-switcher__btn" (click)="switchMonth(1)">
        <i class="icon icon-Arrow-3"></i>
     </button>

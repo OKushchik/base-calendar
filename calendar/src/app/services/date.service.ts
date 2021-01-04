@@ -20,4 +20,8 @@ export class DateService {
     this.subject.next(this.date)
     return this.subject
   }
+  switchMonthInput(val) { 
+    this.date = new Date(val);
+    this.switchMonth()
+  }
 }

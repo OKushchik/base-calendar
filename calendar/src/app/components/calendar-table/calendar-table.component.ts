@@ -6,11 +6,10 @@ import { Vacation } from "src/app/models/vacation";
 import { DateService } from "../../services/date.service";
 import { UserService } from "../../services/user.service";
 import { VacationService } from "../../services/vacation.service";
+import { HolidaysService } from "../../services/holidays.service";
 import { MatDialog } from '@angular/material/dialog';
 import { FormModalComponent } from "../calendar-table/form-modal/form-modal.component";
 import { HttpClient } from '@angular/common/http';
-
-
 
 @Component({
   selector: "app-calendar-table",
@@ -23,9 +22,8 @@ export class CalendarTableComponent implements OnInit {
   daysInMonth: Number;
   arrOfDays: Array<Day>;
   arr: Array<any>
-  obs:any
   isLoading: boolean
-  users: User[];
+  users: User[]; 
   vacations: Vacation[];
   hideme: any = {};
   vacationType: boolean = true;
@@ -35,27 +33,33 @@ export class CalendarTableComponent implements OnInit {
     private _dateService: DateService,
     private _userService: UserService,
     private _vacationService: VacationService,
+    private _holidaysService: HolidaysService,
     public dialog: MatDialog,
     private http: HttpClient
   ) {
     this.date = new Date();
     this.vacations = _vacationService.vacations
     this.procentInFooter = 0;
+    // this.holidays = _holidaysService.arrHolidays
     }
 
   ngOnInit() {
     this.getDaysInMonth();
     this.getArrOfDays();
     this.isLoading = true;
+    this._holidaysService.getHolidayInCurrentMonth(this.date.getMonth()+1)
+  
     
 
     this._dateService.switchMonth().subscribe((val) => {
       this.date = val;
+      this._holidaysService.getHolidayInCurrentMonth(this.date.getMonth()+1)
       this.getDaysInMonth();
       this.getArrOfDays();
       this.checkVacation()
       this.getTeams();
       this.addVacationToUser ()
+
     });
 
     this._userService.getUsers().subscribe((val) => {
@@ -99,6 +103,11 @@ export class CalendarTableComponent implements OnInit {
     for (let i = 0; i < this.arrOfDays.length; i++) {
       if (this.arrOfDays[i].week == "Sa" || this.arrOfDays[i].week == "Su") {
         this.arrOfDays[i].isWeekend = true;
+      }
+      for(let j = 0; j < this._holidaysService.getHolidayInCurrentMonth(this.date.getMonth()+1).length; j++){
+        if (this.arrOfDays[i].num == this._holidaysService.getHolidayInCurrentMonth(this.date.getMonth()+1)[j]) {
+          this.arrOfDays[i].isWeekend = true;
+        }
       }
     }
   }
@@ -146,6 +155,17 @@ export class CalendarTableComponent implements OnInit {
     return new Date(day.split(".").reverse().join("-"))
   }
 
+  getObjVacations (vacation, start, end, duration) {
+    return {
+      idUser: vacation.userId,
+      idVacation: vacation.id,
+      start: start,
+      end: end,
+      duration: duration,
+      type: vacation.type
+    }
+  }
+
   checkVacation(){
     let currentMonth = {
       start: new Date(this.date.getFullYear(), this.date.getMonth(), 1).getTime(),
@@ -154,55 +174,39 @@ export class CalendarTableComponent implements OnInit {
     this.arr = [];
     for (let i = 0; i < this.vacations.length; i++) {
       if(this.convertedDate(this.vacations[i].startDate).getTime() > currentMonth.start &&
-         this.convertedDate(this.vacations[i].endDate).getTime() < currentMonth.end){
-      let obj = {
-        id: this.vacations[i].userId,
-        idVacation: this.vacations[i].id,
-        start: this.convertedDate(this.vacations[i].startDate).getDate(),
-        end: this.convertedDate(this.vacations[i].endDate).getDate(),
-        duration: this.convertedDate(this.vacations[i].endDate).getDate() - this.convertedDate(this.vacations[i].startDate).getDate() + 1,
-        type:this.vacations[i].type
-      }
-      this.arr.push(obj)
+        this.convertedDate(this.vacations[i].endDate).getTime() < currentMonth.end){
+        let obj = this.getObjVacations( this.vacations[i],
+                                        this.convertedDate(this.vacations[i].startDate).getDate(),
+                                        this.convertedDate(this.vacations[i].endDate).getDate(),
+                                        this.convertedDate(this.vacations[i].endDate).getDate() - this.convertedDate(this.vacations[i].startDate).getDate() + 1)
+        this.arr.push(obj)
       }
       if(this.convertedDate(this.vacations[i].startDate).getTime() > currentMonth.start &&
          this.convertedDate(this.vacations[i].endDate).getTime() > currentMonth.end &&
          this.convertedDate(this.vacations[i].startDate).getTime() < currentMonth.end){
-          let obj = {
-            id: this.vacations[i].userId,
-            idVacation: this.vacations[i].id,
-            start: this.convertedDate(this.vacations[i].startDate).getDate(),
-            end: this.daysInMonth,
-            duration: +this.daysInMonth - this.convertedDate(this.vacations[i].startDate).getDate() + 1,
-            type:this.vacations[i].type
-          }
+          let obj = this.getObjVacations( this.vacations[i],
+                                          this.convertedDate(this.vacations[i].startDate).getDate(),
+                                          this.daysInMonth,
+                                          +this.daysInMonth - this.convertedDate(this.vacations[i].startDate).getDate() + 1)
           this.arr.push(obj)
          }
       if(this.convertedDate(this.vacations[i].startDate).getTime() < currentMonth.start &&
         this.convertedDate(this.vacations[i].endDate).getTime() < currentMonth.end &&
         this.convertedDate(this.vacations[i].endDate).getTime() > currentMonth.start){
-        let obj = {
-          id: this.vacations[i].userId,
-          idVacation: this.vacations[i].id,
-          start: 1,
-          end: this.convertedDate(this.vacations[i].endDate).getDate(),
-          duration: this.convertedDate(this.vacations[i].endDate).getDate(),
-          type:this.vacations[i].type
-        }
+        let obj = this.getObjVacations( this.vacations[i],
+                                        1,
+                                        this.convertedDate(this.vacations[i].endDate).getDate(),
+                                        this.convertedDate(this.vacations[i].endDate).getDate())
         this.arr.push(obj)
       }
       if(this.convertedDate(this.vacations[i].startDate).getTime() < currentMonth.start &&
       this.convertedDate(this.vacations[i].endDate).getTime() > currentMonth.end){
-      let obj = {
-        id: this.vacations[i].userId,
-        idVacation: this.vacations[i].id,
-        start: 1,
-        end: this.daysInMonth,
-        duration: this.daysInMonth,
-        type:this.vacations[i].type
+        let obj = this.getObjVacations( this.vacations[i],
+                                        1,
+                                        this.daysInMonth,
+                                        this.daysInMonth)
+        this.arr.push(obj)
       }
-      this.arr.push(obj)
-    }
     }
   }
   
@@ -211,7 +215,7 @@ export class CalendarTableComponent implements OnInit {
       for(let i=0; i<this.users.length; i++){
         this.users[i].vacation = []
         for(let j=0; j<this.arr.length; j++) {
-          if(this.users[i].id === this.arr[j].id){
+          if(this.users[i].id === this.arr[j].idUser){
             this.users[i].vacation.push(this.arr[j])
           }
         }  
@@ -254,10 +258,11 @@ export class CalendarTableComponent implements OnInit {
 
   openDialog() {
     const dialogRef = this.dialog.open(FormModalComponent);
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
-  }
+    // dialogRef.afterClosed().subscribe(result => {
+    //   console.log(`Dialog result: ${result}`);
+    // });
+  } 
+
   deleteVacation(event){
     let test = confirm("Delete this vacation?")
     if(test){
